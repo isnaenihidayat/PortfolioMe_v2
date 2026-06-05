@@ -1,0 +1,50 @@
+---
+// Experience.astro
+import TimelineItem from '../TimelineItem.astro';
+
+const experiences = [
+  {
+    period: '2024 — Present',
+    role: 'Lead AI Engineer',
+    company: 'Independent / Consulting',
+    location: 'Remote',
+    desc: 'Memimpin desain dan implementasi fitur bertenaga AI untuk berbagai klien — dari prototipe RAG sampai sistem agentic yang berjalan di produksi.',
+    chips: ['LLM', 'RAG', 'Architecture'],
+  },
+  {
+    period: '2022 — 2024',
+    role: 'Senior Fullstack Developer',
+    company: 'Product Startup',
+    location: 'Hybrid',
+    desc: 'Membangun dan menskalakan produk SaaS dari nol — frontend React, backend Node/Python, infrastruktur cloud, dan menanamkan fitur ML pertama.',
+    chips: ['React', 'Node.js', 'AWS'],
+  },
+  {
+    period: '2020 — 2022',
+    role: 'Fullstack Developer',
+    company: 'Digital Agency',
+    location: 'On-site',
+    desc: 'Mengerjakan beragam produk klien end-to-end, mengasah fondasi dalam arsitektur, performa, dan kerajinan front-end.',
+    chips: ['TypeScript', 'PostgreSQL', 'API'],
+  },
+];
+---
+
+<section id="experience" class="section-pad wrap">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">Journey</span>
+      <h2 class="section-title" style="margin-top:18px">The road so far</h2>
+    </div>
+    <span class="section-index" aria-hidden="true">/ 05 — 06</span>
+  </div>
+
+  <div class="timeline" aria-label="Work experience timeline">
+    <div class="tl-line" aria-hidden="true">
+      <div class="fill" id="tl-fill"></div>
+    </div>
+    {experiences.map(exp => (
+      <TimelineItem {...exp} />
+    ))}
+  </div>
+</section>

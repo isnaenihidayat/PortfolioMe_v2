@@ -1,0 +1,23 @@
+---
+// PostCard.astro
+interface Props {
+  tag: string;
+  readTime: string;
+  title: string;
+  excerpt: string;
+  href?: string;
+  delay?: string;
+}
+
+const { tag, readTime, title, excerpt, href = '#', delay } = Astro.props;
+---
+
+<a class="post reveal" data-d={delay} href={href}>
+  <div class="p-top">
+    <span class="p-tag">{tag}</span>
+    <span class="p-time">{readTime}</span>
+  </div>
+  <h3>{title}</h3>
+  <p>{excerpt}</p>
+  <span class="p-read">Read note →</span>
+</a>

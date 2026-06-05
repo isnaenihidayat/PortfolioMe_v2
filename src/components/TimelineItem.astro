@@ -1,0 +1,28 @@
+---
+// TimelineItem.astro
+interface Props {
+  period: string;
+  role: string;
+  company: string;
+  location: string;
+  desc: string;
+  chips: string[];
+}
+
+const { period, role, company, location, desc, chips } = Astro.props;
+---
+
+<div class="tl-item">
+  <div class="tl-dot" aria-hidden="true"></div>
+  <div class="tl-when">{period}</div>
+  <div class="tl-role">{role}</div>
+  <div class="tl-co">
+    {company}
+    <span class="sep" aria-hidden="true">·</span>
+    {location}
+  </div>
+  <p class="tl-desc">{desc}</p>
+  <div class="tl-chips" role="list" aria-label="Technologies used">
+    {chips.map(chip => <span role="listitem">{chip}</span>)}
+  </div>
+</div>
