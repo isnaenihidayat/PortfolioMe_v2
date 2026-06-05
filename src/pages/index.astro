@@ -32,22 +32,5 @@ import Contact from '../components/sections/Contact.astro';
 </BaseLayout>
 
 <script>
-  // Basic nav scroll & smooth anchor (full interactions come in Sprint 3)
-  const nav = document.querySelector('.nav');
-  window.addEventListener('scroll', () => {
-    nav?.classList.toggle('scrolled', window.scrollY > 30);
-  }, { passive: true });
-
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const id = (a as HTMLAnchorElement).getAttribute('href');
-      if (!id || id.length < 2) return;
-      const t = document.querySelector(id);
-      if (t) {
-        e.preventDefault();
-        const y = t.getBoundingClientRect().top + window.scrollY - 70;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    });
-  });
+  import '../scripts/interactions';
 </script>
