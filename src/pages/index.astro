@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout>
+  <Nav />
+
+  <main id="main-content">
+    <!-- Sections akan ditambahkan di Sprint 2 -->
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--accent);">
+      🚀 Sprint 1 Complete — Foundation Ready
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  // Scripts akan di-import di Sprint 3
+  // Untuk sekarang: basic nav scroll behavior
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  // Smooth anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = (a as HTMLAnchorElement).getAttribute('href');
+      if (!id || id.length < 2) return;
+      const t = document.querySelector(id);
+      if (t) {
+        e.preventDefault();
+        const y = t.getBoundingClientRect().top + window.scrollY - 70;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  });
+</script>

@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Isnaeni Hidayat — Fullstack Developer & AI Engineer',
+  description = 'Saya merancang, membangun, dan men-ship aplikasi web modern yang ditenagai AI — dari arsitektur backend sampai antarmuka yang terasa hidup.',
+  ogImage = '/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+  <meta property="og:locale" content="id_ID" />
+
+  <!-- LinkedIn Card -->
+  <meta name="author" content="Isnaeni Hidayat" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Preload critical fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <!-- background texture -->
+  <div class="bg-layer bg-grid"></div>
+  <div class="bg-layer"><div class="bg-glow a"></div><div class="bg-glow b"></div></div>
+  <div class="bg-layer bg-noise"></div>
+
+  <!-- custom cursor -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- skip to content (a11y) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <slot />
+
+</body>
+</html>
+
+<style>
+  .skip-link {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 10px 20px;
+    border-radius: 0 0 10px 10px;
+    font-family: var(--mono);
+    font-size: 0.84rem;
+    font-weight: 600;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 0;
+    outline: none;
+  }
+</style>
