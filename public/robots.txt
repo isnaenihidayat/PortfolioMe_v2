@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://isnaeni.dev/sitemap-index.xml
