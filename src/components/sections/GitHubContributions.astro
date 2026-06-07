@@ -1,0 +1,185 @@
+---
+// GitHubContributions.astro
+const user = "isnaenihidayat";
+const ghStatsBase = "https://github-readme-stats.vercel.app/api";
+const activityBase = "https://github-readme-activity-graph.vercel.app/graph";
+
+// Theme tokens matching the portfolio's dark oklch palette
+const theme = {
+  bg: "0d0f1a",
+  border: "1e2235",
+  text: "c8d3f5",
+  title: "86d7fb",
+  icon: "82aaff",
+  ring: "82aaff",
+  fire: "ff757f",
+  area: "82aaff",
+};
+
+const statsUrl =
+  `${ghStatsBase}?username=${user}` +
+  `&show_icons=true&hide_border=true&include_all_commits=true` +
+  `&count_private=true&rank_icon=github` +
+  `&bg_color=${theme.bg}&title_color=${theme.title}&text_color=${theme.text}` +
+  `&icon_color=${theme.icon}&border_color=${theme.border}&ring_color=${theme.ring}`;
+
+const langUrl =
+  `${ghStatsBase}/top-langs?username=${user}` +
+  `&layout=compact&hide_border=true&langs_count=8` +
+  `&bg_color=${theme.bg}&title_color=${theme.title}&text_color=${theme.text}` +
+  `&border_color=${theme.border}`;
+
+const streakUrl =
+  `https://streak-stats.demolab.com?user=${user}` +
+  `&hide_border=true&date_format=j%20M%5B%20Y%5D` +
+  `&background=${theme.bg}&ring=${theme.ring}&fire=${theme.fire}` +
+  `&currStreakNum=${theme.title}&sideNums=${theme.text}` +
+  `&currStreakLabel=${theme.icon}&sideLabels=${theme.text}&dates=${theme.text}`;
+
+const activityUrl =
+  `${activityBase}?username=${user}` +
+  `&theme=react-dark&hide_border=true&area=true` +
+  `&color=${theme.text}&line=${theme.area}&point=${theme.title}` +
+  `&area_color=${theme.area}&bg_color=${theme.bg}&height=200`;
+---
+
+<section id="github" class="section-pad wrap">
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">Open Source</span>
+      <h2 class="section-title" style="margin-top:18px">GitHub Contributions</h2>
+    </div>
+    <a
+      class="gh-profile-link reveal"
+      href={`https://github.com/${user}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Visit GitHub profile"
+    >
+      ⌥ @{user} ↗
+    </a>
+  </div>
+
+  <!-- Activity Graph — full width -->
+  <div class="gh-graph reveal">
+    <img
+      src={activityUrl}
+      alt={`GitHub activity graph for ${user}`}
+      loading="lazy"
+      decoding="async"
+      width="1200"
+      height="200"
+    />
+  </div>
+
+  <!-- Stats cards row -->
+  <div class="gh-cards">
+    <div class="gh-card reveal">
+      <img
+        src={statsUrl}
+        alt={`GitHub stats for ${user}`}
+        loading="lazy"
+        decoding="async"
+        width="495"
+        height="195"
+      />
+    </div>
+
+    <div class="gh-card reveal" data-d="2">
+      <img
+        src={streakUrl}
+        alt={`GitHub streak stats for ${user}`}
+        loading="lazy"
+        decoding="async"
+        width="495"
+        height="195"
+      />
+    </div>
+
+    <div class="gh-card gh-card--lang reveal" data-d="3">
+      <img
+        src={langUrl}
+        alt={`Most used languages by ${user}`}
+        loading="lazy"
+        decoding="async"
+        width="495"
+        height="195"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Activity graph ── */
+  .gh-graph {
+    margin-top: 48px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line-soft);
+    background: oklch(0.13 0.018 265);
+  }
+  .gh-graph img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ── Stats cards ── */
+  .gh-cards {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .gh-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line-soft);
+    background: oklch(0.13 0.018 265);
+    transition: border-color 0.25s, transform 0.3s var(--ease);
+  }
+  .gh-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .gh-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ── Profile link ── */
+  .gh-profile-link {
+    font-family: var(--mono);
+    font-size: 0.84rem;
+    color: var(--accent);
+    border: 1px solid oklch(0.70 0.17 265 / 0.35);
+    padding: 8px 18px;
+    border-radius: 999px;
+    align-self: center;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .gh-profile-link:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .gh-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+    .gh-card--lang {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 560px) {
+    .gh-cards {
+      grid-template-columns: 1fr;
+    }
+    .gh-card--lang {
+      grid-column: auto;
+    }
+  }
+</style>
