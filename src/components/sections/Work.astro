@@ -1,51 +1,65 @@
 ---
 // Work.astro
-import WorkCard from '../WorkCard.astro';
+import WorkCard from "../WorkCard.astro";
 
 const projects = [
   {
-    num: '01',
-    year: '2025',
-    tag: 'RAG · SUPPORT',
-    title: 'NeuraDesk',
-    desc: 'Platform support berbasis RAG yang menjawab pertanyaan pelanggan dari knowledge base internal — dengan sitasi sumber dan handoff ke manusia.',
-    stack: ['Next.js', 'FastAPI', 'LangChain', 'pgvector'],
-    image: '/images/neuradesk.png',
-    imageAlt: 'NeuraDesk — RAG-based customer support platform showing AI chat with source citations',
-    delay: undefined,
+    num: "01",
+    year: "2026 — Present",
+    tag: "Internal System",
+    title: "Activity Tracker",
+    desc: "Sistem web dan mobile untuk membantu karyawan mencatat aktivitas harian secara cepat, sementara HR dan manajemen dapat meninjau, menyetujui, serta menarik laporan produktivitas dari satu admin panel terpusat. Sistem ini dirancang untuk menggantikan pencatatan manual berbasis spreadsheet menjadi workflow yang lebih rapi, otomatis, dan data-driven.",
+    stack: ["React.js", "Vite", "PHP", "Laravel", "PostgreSQL", "Tailwind CSS"],
+    image: "/images/tracker.png",
+    imageAlt: "Employee Daily Activity Tracker System dashboard preview",
+    delay: "2",
+    href: "https://tracker.mingpromo.com/",
   },
   {
-    num: '02',
-    year: '2025',
-    tag: 'ANALYTICS',
-    title: 'FluxBoard',
-    desc: 'Dashboard analitik realtime full-stack dengan streaming data, kolaborasi multi-user, dan ringkasan otomatis bertenaga LLM.',
-    stack: ['React', 'Node.js', 'WebSocket', 'Redis'],
-    image: '/images/fluxboard.png',
-    imageAlt: 'FluxBoard — Real-time analytics dashboard with streaming data visualizations',
-    delay: '2',
+    num: "02",
+    year: "2026 — Present",
+    tag: "Learning Platform",
+    title: "LMS & Skill Matrix",
+    desc: "Platform internal yang menggabungkan Learning Management System dan Skill Matrix untuk mengelola pelatihan karyawan, memantau progres pembelajaran, serta memetakan level kompetensi dan skill gap. Sistem ini membantu HR dan manajemen melihat kebutuhan training secara lebih terstruktur, real-time, dan berbasis data.",
+    stack: [
+      "Laravel",
+      "PostgreSQL",
+      "React.js",
+      "Vue.js",
+      "PHP",
+      "Vite",
+      "Tailwind CSS",
+      "TypeScript",
+      "Shadcn/UI",
+    ],
+    image: "/images/lms.png",
+    imageAlt: "LMS and Skill Matrix platform dashboard preview",
+    delay: "2",
+    href: "https://lms.mingpromo.com/",
   },
   {
-    num: '03',
-    year: '2024',
-    tag: 'AI AGENT',
-    title: 'CodeWeaver',
-    desc: 'Asisten coding agentic yang membaca repo, merencanakan perubahan multi-file, dan membuka pull request — dibungkus extension & web UI.',
-    stack: ['TypeScript', 'Python', 'Agents', 'Docker'],
-    image: '/images/codeweaver.png',
-    imageAlt: 'CodeWeaver — AI coding assistant with multi-file planning and agent reasoning panel',
-    delay: undefined,
+    num: "03",
+    year: "2026",
+    tag: "Healthcare Website",
+    title: "Klinik & Rumah Bersalin Nur Fajar",
+    desc: "Website company profile untuk klinik dan rumah bersalin yang menampilkan informasi layanan kesehatan keluarga, jadwal operasional, fasilitas, artikel edukasi, kontak, lokasi, serta formulir janji temu. Dibangun dengan pendekatan modern, responsif, dan mudah dinavigasi agar pasien dapat memahami layanan klinik dan melakukan appointment dengan lebih cepat.",
+    stack: ["Next.js", "TypeScript 5", "React 19", "Vanilla CSS"],
+    image: "/images/klinik.png",
+    imageAlt: "Klinik dan Rumah Bersalin Nur Fajar website preview",
+    delay: "2",
+    href: "https://klinik-nurfajar.vercel.app/",
   },
   {
-    num: '04',
-    year: '2024',
-    tag: 'COMPUTER VISION',
-    title: 'VisionLedger',
-    desc: 'Pipeline computer-vision untuk ekstraksi dokumen keuangan — OCR, klasifikasi, dan rekonsiliasi otomatis ke dalam ERP.',
-    stack: ['PyTorch', 'FastAPI', 'AWS', 'Postgres'],
-    image: '/images/visionledger.png',
-    imageAlt: 'VisionLedger — Computer vision document processing pipeline with OCR and ERP sync',
-    delay: '2',
+    num: "04",
+    year: "2016 — 2017",
+    tag: "Logistics System",
+    title: "eLogsuite App",
+    desc: "Aplikasi operasional terpadu untuk perusahaan ekspor-impor dan logistik, mencakup modul pengiriman, inventory, keuangan, hingga pelacakan kargo secara real-time. Dibangun untuk membantu tim operasional mengelola proses kerja dengan lebih efisien, terpusat, dan mudah dipantau.",
+    stack: ["PHP", "MySQL", "Javascript"],
+    image: "/images/elogsuite.png",
+    imageAlt: "eLogsuite logistics application dashboard preview",
+    delay: "2",
+    href: "https://server7.elog.id/elogsuite",
   },
 ];
 ---
@@ -60,8 +74,6 @@ const projects = [
   </div>
 
   <div class="work-grid">
-    {projects.map(project => (
-      <WorkCard {...project} />
-    ))}
+    {projects.map((project) => <WorkCard {...project} />)}
   </div>
 </section>
