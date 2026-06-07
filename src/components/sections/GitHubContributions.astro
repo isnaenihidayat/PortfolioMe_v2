@@ -95,7 +95,7 @@ function fmt(n: number) {
 const totalWeeks = weeks.length || 53;
 ---
 
-<section id="github" class="section-pad wrap">
+<section id="github" class="section-pad wrap" style="padding-top: 5px; padding-bottom: 5px;">
   <div class="gh-card reveal">
 
     <!-- ── Card header ── -->
@@ -205,18 +205,33 @@ const totalWeeks = weeks.length || 53;
 </section>
 
 <style>
-/* ── Card shell ── */
+/* ── Card shell — mirrors ai-band style ── */
 .gh-card {
-  background: #0d1117;
-  border: 1px solid #21262d;
-  border-radius: 16px;
-  padding: 28px 32px 24px;
-  max-width: 100%;
+  position: relative;
+  border: 1px solid var(--line-soft);
+  border-radius: 24px;
   overflow: hidden;
+  background: linear-gradient(160deg, var(--bg-2), var(--bg));
+  padding: clamp(24px, 3.5vw, 40px) clamp(20px, 4vw, 48px) clamp(20px, 3vw, 32px);
+}
+/* subtle dot-grid overlay — same pattern as ai-band::before */
+.gh-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+  -webkit-mask-image: radial-gradient(circle at 10% 80%, #000, transparent 65%);
+  mask-image: radial-gradient(circle at 10% 80%, #000, transparent 65%);
 }
 
 /* ── Header ── */
 .gh-card-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -226,45 +241,58 @@ const totalWeeks = weeks.length || 53;
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #e6edf3;
 }
-.gh-icon { color: #e6edf3; flex-shrink: 0; }
+.gh-icon { color: var(--fg-mid); flex-shrink: 0; }
 .gh-title h2 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #e6edf3;
+  font-family: var(--display);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: var(--fg);
   margin: 0;
   letter-spacing: -0.02em;
 }
 .gh-view-link {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #58a6ff;
+  position: relative;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  border: 1px solid oklch(0.70 0.17 265 / 0.30);
+  padding: 7px 16px;
+  border-radius: 999px;
   white-space: nowrap;
-  transition: opacity 0.2s;
+  transition: background 0.25s var(--ease), color 0.25s, border-color 0.25s;
 }
-.gh-view-link:hover { opacity: 0.75; }
+.gh-view-link:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
 
 /* ── Subtitle ── */
 .gh-subtitle {
-  margin: 8px 0 0;
-  font-size: 0.85rem;
-  color: #848d97;
+  position: relative;
+  margin: 10px 0 0;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--fg-dim);
+  letter-spacing: 0.04em;
 }
 
 /* ── Divider ── */
 .gh-divider {
+  position: relative;
   border: none;
-  border-top: 1px dashed #21262d;
+  border-top: 1px dashed var(--line-soft);
   margin: 20px 0 18px;
 }
 
 /* ── Calendar wrapper ── */
 .gh-calendar-wrap {
+  position: relative;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
-  scrollbar-color: #21262d transparent;
+  scrollbar-color: var(--line) transparent;
 }
 
 /* ── Month labels ── */
@@ -274,10 +302,11 @@ const totalWeeks = weeks.length || 53;
   min-width: max-content;
 }
 .gh-month-label {
-  font-size: 0.72rem;
-  color: #848d97;
-  font-family: var(--mono, monospace);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--fg-faint);
   line-height: 1;
+  letter-spacing: 0.04em;
 }
 
 /* ── Week × Day grid ── */
@@ -296,17 +325,20 @@ const totalWeeks = weeks.length || 53;
   height: 11px;
   border-radius: 2px;
   flex-shrink: 0;
+  transition: opacity 0.15s;
 }
+.gh-day:hover { opacity: 0.75; }
 
-/* Contribution levels — GitHub dark theme palette */
-.lv0 { background: #161b22; }
-.lv1 { background: #0e4429; }
-.lv2 { background: #006d32; }
-.lv3 { background: #26a641; }
-.lv4 { background: #39d353; }
+/* Contribution levels — portfolio-tinted greens (matching oklch palette) */
+.lv0 { background: var(--surface); opacity: 0.5; }
+.lv1 { background: oklch(0.26 0.09 150); opacity: 1; }
+.lv2 { background: oklch(0.37 0.13 150); opacity: 1; }
+.lv3 { background: oklch(0.52 0.18 150); opacity: 1; }
+.lv4 { background: oklch(0.70 0.22 150); opacity: 1; }
 
 /* ── Footer ── */
 .gh-footer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -315,38 +347,44 @@ const totalWeeks = weeks.length || 53;
   margin-top: 16px;
 }
 .gh-learn {
-  font-size: 0.75rem;
-  color: #848d97;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--fg-faint);
   text-decoration: none;
   transition: color 0.2s;
 }
-.gh-learn:hover { color: #58a6ff; }
+.gh-learn:hover { color: var(--accent); }
 .gh-legend {
   display: flex;
   align-items: center;
-  gap: 3px;
-  font-size: 0.75rem;
-  color: #848d97;
+  gap: 4px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--fg-faint);
+  letter-spacing: 0.04em;
 }
 .gh-legend .gh-day { cursor: default; }
-.gh-legend span { padding: 0 2px; }
+.gh-legend span { padding: 0 3px; }
 
 /* ── Fallback ── */
-.gh-fallback { padding: 24px 0 8px; }
+.gh-fallback { position: relative; padding: 24px 0 8px; }
 .gh-fallback code {
-  background: #21262d;
+  background: var(--surface);
   padding: 2px 6px;
   border-radius: 4px;
+  font-family: var(--mono);
   font-size: 0.85em;
-  color: #79c0ff;
+  color: var(--accent-2);
+  border: 1px solid var(--line-soft);
 }
-.gh-fallback a { color: #58a6ff; }
+.gh-fallback a { color: var(--accent); }
 
 /* ── Responsive ── */
 @media (max-width: 600px) {
-  .gh-card { padding: 20px 16px 18px; }
+  .gh-card { border-radius: 16px; }
   .gh-day { width: 10px; height: 10px; }
   .gh-grid { gap: 2px; }
   .gh-week { gap: 2px; }
 }
 </style>
+
