@@ -1,39 +1,89 @@
 ---
 // Experience.astro — Updated with real LinkedIn experience data
-import TimelineItem from '../TimelineItem.astro';
+import TimelineItem from "../TimelineItem.astro";
 
 const experiences = [
   {
-    period: 'Apr 2022 — Sekarang',
-    role: 'IT Manager',
-    company: 'PT Mitra Inovasi Gemilang',
-    location: 'Jakarta, Indonesia · On-site',
-    desc: 'Memimpin tim IT dan mengelola infrastruktur teknologi perusahaan. Merancang dan mengimplementasikan sistem informasi, mengelola server Linux, serta memastikan keandalan dan keamanan sistem. Bertanggung jawab atas pengembangan aplikasi internal berbasis Laravel dan Vue.js.',
-    chips: ['Laravel', 'Vue.js', 'Linux', 'MySQL', 'IT Management'],
+    period: "Feb 2026 — Present",
+    role: "IT Manager",
+    company: "PT Mitra Inovasi Gemilang",
+    location: "North Jakarta, Indonesia · On-site",
+    desc: "Memimpin pengembangan sistem internal, workflow automation, productivity tracker, management information system, dan ERP/Odoo customization untuk meningkatkan efisiensi operasional perusahaan. Berperan menghubungkan kebutuhan bisnis, arsitektur teknis, tim development, vendor, dan stakeholder agar solusi yang dibangun scalable dan maintainable.",
+    chips: [
+      "IT Management",
+      "System Architecture",
+      "Workflow Automation",
+      "Odoo ERP",
+      "Laravel & Vue.js",
+      "Team Leadership",
+      "Vendor Management",
+    ],
   },
   {
-    period: 'Jan 2022 — Sekarang',
-    role: 'Freelance Full Stack Developer',
-    company: 'Self-employed',
-    location: 'Remote',
-    desc: 'Menerima dan mengerjakan proyek dari berbagai klien — mulai dari sistem informasi sekolah, aplikasi kasir, website company profile, hingga integrasi API. Menggunakan Laravel, Vue.js, Node.js, dan MySQL sebagai stack utama.',
-    chips: ['Laravel', 'Vue.js', 'Node.js', 'REST API'],
+    period: "Mar 2022 — Present",
+    role: "Full-Stack Developer / Consultant",
+    company: "Freelance",
+    location: "Remote",
+    desc: "Membantu bisnis dan organisasi membangun aplikasi web, dashboard, sistem internal, dan integrasi API secara end-to-end. Fokus pada solusi yang praktis, mudah digunakan, mudah dirawat, dan sesuai dengan proses kerja nyata.",
+    chips: [
+      "Full-Stack Development",
+      "Laravel",
+      "Vue.js",
+      "Node.js",
+      "REST API",
+      "MySQL",
+      "Dashboard",
+      "Remote Consulting",
+    ],
   },
   {
-    period: 'Jun 2019 — Mar 2022',
-    role: 'Full Stack Developer',
-    company: 'PT. Nurul Fikri Cipta Inovasi',
-    location: 'Jakarta, Indonesia',
-    desc: 'Mengembangkan dan memelihara aplikasi web berbasis Laravel untuk kebutuhan bisnis dan pendidikan. Mengimplementasikan fitur-fitur baru, melakukan code review, dan bekerja sama dengan tim dalam metodologi Agile.',
-    chips: ['Laravel', 'PHP', 'MySQL', 'JavaScript', 'Agile'],
+    period: "Aug 2016 — Apr 2023",
+    role: "Head of Division, Full-Stack Developer",
+    company: "PT eLogistik System Indonesia",
+    location: "South Jakarta, Indonesia · Hybrid",
+    desc: "Merancang dan mengembangkan solusi ICT, aplikasi web, sistem kolaborasi, integrasi API, dan modul operasional untuk kebutuhan bisnis klien. Terlibat dalam perancangan arsitektur, pengembangan backend/frontend, manajemen database, serta koordinasi lintas fungsi.",
+    chips: [
+      "Solution Architecture",
+      "System Integration",
+      "API Integration",
+      "Laravel",
+      "Vue.js",
+      "MySQL/PostgreSQL",
+      "Stakeholder Management",
+      "Cross-functional Leadership",
+    ],
   },
   {
-    period: '2013 — 2019',
-    role: 'Web Developer',
-    company: 'Berbagai Perusahaan',
-    location: 'Jakarta & Sekitarnya',
-    desc: 'Mengawali karir sebagai web developer dengan menguasai PHP, MySQL, HTML/CSS, dan JavaScript. Mengerjakan berbagai proyek website dan sistem informasi untuk klien dari sektor pendidikan, kesehatan, dan bisnis.',
-    chips: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
+    period: "Aug 2015 — Jul 2016",
+    role: "Full-Stack Developer",
+    company: "Logistics Plus Inc.",
+    location: "South Jakarta, Indonesia · Hybrid",
+    desc: "Mengembangkan aplikasi logistik dan supply chain untuk mendukung inventory, shipment, warehouse operation, dan visibilitas proses operasional. Fokus pada backend yang stabil, database yang efisien, frontend yang mudah digunakan, serta integrasi API.",
+    chips: [
+      "Logistics System",
+      "Supply Chain Apps",
+      "PHP/Laravel",
+      "MySQL/PostgreSQL",
+      "API Integration",
+      "Warehouse Operations",
+      "Data Processing",
+    ],
+  },
+  {
+    period: "Aug 2013 — Aug 2015",
+    role: "Programmer",
+    company: "PT Wira Logitama Saksama",
+    location: "MM2100 Cibitung, Indonesia · On-site",
+    desc: "Membangun aplikasi internal, modul reporting, dan dukungan teknis untuk menunjang aktivitas pergudangan, administrasi, dan operasional harian. Peran ini menjadi fondasi awal dalam memahami kebutuhan user dan membangun sistem yang benar-benar dipakai.",
+    chips: [
+      "Internal Software",
+      "Reporting Automation",
+      "Technical Support",
+      "Warehouse Operations",
+      "Operational Systems",
+      "Troubleshooting",
+      "Database",
+    ],
   },
 ];
 ---
@@ -51,8 +101,6 @@ const experiences = [
     <div class="tl-line" aria-hidden="true">
       <div class="fill" id="tl-fill"></div>
     </div>
-    {experiences.map(exp => (
-      <TimelineItem {...exp} />
-    ))}
+    {experiences.map((exp) => <TimelineItem {...exp} />)}
   </div>
 </section>

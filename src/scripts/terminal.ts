@@ -2,7 +2,7 @@
 
 const LINES = [
   '<span class="c-prompt">$</span> isnaeni --whoami',
-  '<span class="c-str">IT Manager &amp; Fullstack Developer · Jakarta</span>',
+  '<span class="c-str">IT Manager &amp; Fullstack Developer</span>',
   '',
   '<span class="c-prompt">$</span> cat stack.json',
   '<span class="c-dim">{</span>',
