@@ -208,10 +208,10 @@ const totalWeeks = weeks.length || 53;
 /* ── Card shell — mirrors ai-band style ── */
 .gh-card {
   position: relative;
-  border: 1px solid var(--line-soft);
+  border: 1px solid var(--color-brand-border);
   border-radius: 24px;
   overflow: hidden;
-  background: linear-gradient(160deg, var(--bg-2), var(--bg));
+  background: linear-gradient(160deg, var(--color-brand-surface), var(--color-brand-bg));
   padding: clamp(24px, 3.5vw, 40px) clamp(20px, 4vw, 48px) clamp(20px, 3vw, 32px);
 }
 /* subtle dot-grid overlay — same pattern as ai-band::before */
@@ -221,8 +221,8 @@ const totalWeeks = weeks.length || 53;
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(var(--line-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    linear-gradient(var(--color-brand-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-brand-border) 1px, transparent 1px);
   background-size: 40px 40px;
   opacity: 0.3;
   -webkit-mask-image: radial-gradient(circle at 10% 80%, #000, transparent 65%);
@@ -256,7 +256,7 @@ const totalWeeks = weeks.length || 53;
   font-family: var(--mono);
   font-size: 0.8rem;
   color: var(--accent);
-  border: 1px solid oklch(0.70 0.17 265 / 0.30);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   padding: 7px 16px;
   border-radius: 999px;
   white-space: nowrap;
@@ -264,7 +264,7 @@ const totalWeeks = weeks.length || 53;
 }
 .gh-view-link:hover {
   background: var(--accent);
-  color: var(--bg);
+  color: var(--color-brand-bg);
   border-color: var(--accent);
 }
 
@@ -282,7 +282,7 @@ const totalWeeks = weeks.length || 53;
 .gh-divider {
   position: relative;
   border: none;
-  border-top: 1px dashed var(--line-soft);
+  border-top: 1px dashed var(--color-brand-border);
   margin: 20px 0 18px;
 }
 
@@ -329,12 +329,12 @@ const totalWeeks = weeks.length || 53;
 }
 .gh-day:hover { opacity: 0.75; }
 
-/* Contribution levels — portfolio-tinted greens (matching oklch palette) */
-.lv0 { background: var(--surface); opacity: 0.5; }
-.lv1 { background: oklch(0.26 0.09 150); opacity: 1; }
-.lv2 { background: oklch(0.37 0.13 150); opacity: 1; }
-.lv3 { background: oklch(0.52 0.18 150); opacity: 1; }
-.lv4 { background: oklch(0.70 0.22 150); opacity: 1; }
+/* Contribution levels — portfolio-tinted purples (matching biru-violet palette) */
+.lv0 { background: var(--color-brand-surface-alt); opacity: 0.6; }
+.lv1 { background: color-mix(in srgb, var(--accent-3) 30%, var(--color-brand-surface-alt)); opacity: 1; }
+.lv2 { background: color-mix(in srgb, var(--accent-3) 55%, var(--color-brand-surface-alt)); opacity: 1; }
+.lv3 { background: var(--accent-3); opacity: 1; }
+.lv4 { background: var(--accent); opacity: 1; }
 
 /* ── Footer ── */
 .gh-footer {
@@ -369,13 +369,13 @@ const totalWeeks = weeks.length || 53;
 /* ── Fallback ── */
 .gh-fallback { position: relative; padding: 24px 0 8px; }
 .gh-fallback code {
-  background: var(--surface);
+  background: var(--color-brand-surface-alt);
   padding: 2px 6px;
   border-radius: 4px;
   font-family: var(--mono);
   font-size: 0.85em;
   color: var(--accent-2);
-  border: 1px solid var(--line-soft);
+  border: 1px solid var(--color-brand-border);
 }
 .gh-fallback a { color: var(--accent); }
 

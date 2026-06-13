@@ -41,6 +41,7 @@ function checkTimeline() {
     if (inView(el, 0.7)) el.classList.add('in');
     if (el.classList.contains('in')) active++;
   });
+  // Legacy left-side fill (height based)
   if (tlFill && tlItems.length) {
     tlFill.style.height = (active / tlItems.length * 100) + '%';
   }
@@ -83,7 +84,11 @@ export function initReveal() {
   if (reduce) { forceVisible(); return; }
 
   reveals = [...document.querySelectorAll('.reveal')];
-  tlItems  = [...document.querySelectorAll('.tl-item')];
+  // Support both new two-column (.tl-row) and legacy (.tl-item) timeline
+  tlItems  = [
+    ...document.querySelectorAll('.tl-row'),
+    ...document.querySelectorAll('.tl-item'),
+  ];
   tlFill   = document.querySelector<HTMLElement>('.tl-line .fill');
 
   // Add anim-on so CSS hides elements before animating in

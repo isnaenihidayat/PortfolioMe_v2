@@ -1,5 +1,5 @@
 ---
-// About.astro — Updated with real LinkedIn profile data
+// About.astro — Pull quote card + marquee roles, inspired by faisalaffan.com
 ---
 
 <section id="about" class="section-pad wrap">
@@ -7,35 +7,105 @@
     <div>
       <span class="eyebrow">About</span>
       <h2 class="section-title" style="margin-top:18px">
-        Dari kebutuhan menjadi sistem.
+        Dari kebutuhan<br />menjadi sistem.
       </h2>
     </div>
-    <span class="section-index" aria-hidden="true">/ 01 — 06</span>
+    <span class="section-index" aria-hidden="true">/ 01 — 07</span>
   </div>
 
   <div class="about-grid">
-    <p class="about-lead reveal">
-      Saya menggabungkan <em>rekayasa full-stack</em>, <em>manajemen IT</em> dan <em
-        >pemahaman proses bisnis</em
-      > untuk membangun sistem yang bukan hanya berjalan — tapi scalable, maintainable,
-      dan benar-benar menyelesaikan masalah operasional.
-    </p>
+    <!-- LEFT: Lead text + pull quote -->
+    <div>
+      <p class="about-lead reveal">
+        Saya menggabungkan <em>rekayasa full-stack</em>, <em>manajemen IT</em> dan <em
+          >pemahaman proses bisnis</em
+        > untuk membangun sistem yang bukan hanya berjalan — tapi <em>scalable</em>,
+        <em>maintainable</em>, dan benar-benar menyelesaikan masalah operasional.
+      </p>
+
+      <!-- Pull quote card -->
+      <div class="about-pullquote-card reveal" data-d="2">
+        <span class="about-pullquote-mark" aria-hidden="true">"</span>
+        <p class="about-pullquote-text">
+          Build things that last — not just things that look good.
+          Technology should serve people, not the other way around.
+        </p>
+      </div>
+
+      <!-- Role marquee cards -->
+      <div class="about-roles-marquee reveal" data-d="3" aria-hidden="true">
+        <div class="about-roles-track">
+          <!-- Set 1 -->
+          <div class="role-card">
+            <span class="rc-tag">Primary</span>
+            <div class="rc-title">IT Manager</div>
+            <div class="rc-desc">Memimpin tim & strategi teknis</div>
+          </div>
+          <div class="role-card">
+            <span class="rc-tag">Core</span>
+            <div class="rc-title">Full-Stack Dev</div>
+            <div class="rc-desc">Laravel, Vue.js, Node.js</div>
+          </div>
+          <div class="role-card">
+            <span class="rc-tag">Specialty</span>
+            <div class="rc-title">Solution Architect</div>
+            <div class="rc-desc">System design & integration</div>
+          </div>
+          <div class="role-card">
+            <span class="rc-tag">Focus</span>
+            <div class="rc-title">ERP Specialist</div>
+            <div class="rc-desc">Odoo customization & deployment</div>
+          </div>
+          <div class="role-card">
+            <span class="rc-tag">Growing</span>
+            <div class="rc-title">AI Developer</div>
+            <div class="rc-desc">AI-assisted business apps</div>
+          </div>
+          <!-- Set 2 (duplicate for infinite scroll) -->
+          <div class="role-card">
+            <span class="rc-tag">Primary</span>
+            <div class="rc-title">IT Manager</div>
+            <div class="rc-desc">Memimpin tim & strategi teknis</div>
+          </div>
+          <div class="role-card">
+            <span class="rc-tag">Core</span>
+            <div class="rc-title">Full-Stack Dev</div>
+            <div class="rc-desc">Laravel, Vue.js, Node.js</div>
+          </div>
+          <div class="role-card">
+            <span class="rc-tag">Specialty</span>
+            <div class="rc-title">Solution Architect</div>
+            <div class="rc-desc">System design & integration</div>
+          </div>
+          <div class="role-card">
+            <span class="rc-tag">Focus</span>
+            <div class="rc-title">ERP Specialist</div>
+            <div class="rc-desc">Odoo customization & deployment</div>
+          </div>
+          <div class="role-card">
+            <span class="rc-tag">Growing</span>
+            <div class="rc-title">AI Developer</div>
+            <div class="rc-desc">AI-assisted business apps</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Body text + tags -->
     <div class="about-body reveal" data-d="2">
       <p>
-        Dengan pengalaman lebih dari 10 tahun di industri teknologi, saya
-        terbiasa menangani pengembangan sistem end-to-end: mulai dari <strong
-          >menggali kebutuhan user, merancang arsitektur aplikasi, membangun
-          backend</strong
-        > dan REST API, menata database, hingga menghadirkan antarmuka yang rapi dan
-        mudah digunakan.
+        Dengan pengalaman lebih dari <strong>10 tahun</strong> di industri teknologi, saya
+        terbiasa menangani pengembangan sistem end-to-end: mulai dari
+        <strong>menggali kebutuhan user, merancang arsitektur aplikasi, membangun
+        backend</strong> dan REST API, menata database, hingga menghadirkan antarmuka yang
+        rapi dan mudah digunakan.
       </p>
       <p>
         Dalam beberapa tahun terakhir, fokus saya berkembang ke <strong
           >internal business system, workflow automation, ERP/Odoo
           customization, dashboard operasional, dan AI-assisted applications.</strong
-        > Saya tertarik membangun teknologi yang praktis: bukan sekadar terlihat modern,
-        tetapi benar-benar membantu tim bekerja lebih cepat, lebih terukur, dan lebih
-        efisien.
+        > Saya tertarik membangun teknologi yang praktis — bukan sekadar terlihat modern,
+        tetapi benar-benar membantu tim bekerja lebih cepat, lebih terukur, dan lebih efisien.
       </p>
 
       <div class="about-tags">
@@ -47,7 +117,7 @@
         <span class="tag">IT Management</span>
         <span class="tag">AI-Assisted Apps</span>
         <span class="tag">System Design</span>
-        <span class="tag">Dashboard & Reporting</span>
+        <span class="tag">Dashboard &amp; Reporting</span>
       </div>
     </div>
   </div>

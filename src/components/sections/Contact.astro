@@ -1,66 +1,107 @@
 ---
-// Contact.astro
+// Contact.astro — Radar-style card, inspired by faisalaffan.com
 ---
 
 <section id="contact" class="section-pad wrap contact">
-  <span class="eyebrow reveal" style="justify-content:center">Contact</span>
+  <div class="section-head reveal">
+    <div>
+      <span class="eyebrow">Contact</span>
+      <h2 class="section-title" style="margin-top:18px">Let's work together</h2>
+    </div>
+    <span class="section-index" aria-hidden="true">/ 07 — 07</span>
+  </div>
 
-  <h2 class="big reveal" data-d="2" style="margin-top:24px">
-    Let's build<br />
-    <a
-      href="mailto:isnaeni.hidayat@outlook.com"
-      data-magnetic="0.15"
-      id="contact-email">something great</a
-    >
-  </h2>
+  <div class="contact-card reveal" data-d="2" id="contact-card">
+    <!-- Mouse glow -->
+    <div class="contact-glow" id="contact-glow"></div>
 
-  <p class="contact-sub reveal" data-d="2">
-    Punya ide projek, atau sekadar ingin ngobrol soal kebutuhan IT? Pintu saya
-    terbuka.
-  </p>
+    <div class="contact-card-inner">
+      <!-- LEFT: CTA text -->
+      <div class="contact-copy">
+        <h3 class="contact-heading">
+          Punya ide projek,<br />atau butuh bantuan IT?
+        </h3>
+        <p class="contact-subtext">
+          Pintu saya selalu terbuka. Mari ngobrol — dari quick consultation
+          sampai full system build, saya siap bantu.
+        </p>
 
-  <div class="socials reveal" data-d="3">
-    <a
-      class="social"
-      href="mailto:isnaeni.hidayat@outlook.com"
-      data-magnetic="0.3"
-      id="social-email"
-      aria-label="Send email to Isnaeni Hidayat"
-    >
-      ✉ Email
-    </a>
-    <a
-      class="social"
-      href="https://wa.me/6287804528887"
-      target="_blank"
-      rel="noopener noreferrer"
-      data-magnetic="0.3"
-      id="social-whatsapp"
-      aria-label="Chat via WhatsApp (opens in new tab)"
-    >
-      ✆ WhatsApp
-    </a>
-    <a
-      class="social"
-      href="https://github.com/isnaenihidayat"
-      target="_blank"
-      rel="noopener noreferrer"
-      data-magnetic="0.3"
-      id="social-github"
-      aria-label="Visit GitHub profile (opens in new tab)"
-    >
-      ⌥ GitHub
-    </a>
-    <a
-      class="social"
-      href="https://www.linkedin.com/in/isnaeni-hidayat/"
-      target="_blank"
-      rel="noopener noreferrer"
-      data-magnetic="0.3"
-      id="social-linkedin"
-      aria-label="Visit LinkedIn profile (opens in new tab)"
-    >
-      in LinkedIn
-    </a>
+        <a
+          href="mailto:isnaeni.hidayat@outlook.com"
+          class="contact-cta"
+          id="contact-email-cta"
+        >
+          ✉ Kirim Email ↗
+        </a>
+
+        <div class="contact-social-links">
+          <a
+            class="contact-social-link"
+            href="https://wa.me/6287804528887"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="social-whatsapp"
+            aria-label="Chat via WhatsApp"
+          >
+            ✆ WhatsApp
+          </a>
+          <a
+            class="contact-social-link"
+            href="https://github.com/isnaenihidayat"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="social-github"
+            aria-label="Visit GitHub profile"
+          >
+            ⌥ GitHub
+          </a>
+          <a
+            class="contact-social-link"
+            href="https://www.linkedin.com/in/isnaeni-hidayat/"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="social-linkedin"
+            aria-label="Visit LinkedIn profile"
+          >
+            in LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Radar visual -->
+      <div class="contact-visual" aria-hidden="true">
+        <!-- Floating social tags -->
+        <div class="contact-float-tag">✉ Email</div>
+        <div class="contact-float-tag">✆ WA</div>
+        <div class="contact-float-tag">⌥ GitHub</div>
+        <div class="contact-float-tag">in LinkedIn</div>
+
+        <!-- Radar ring -->
+        <div class="contact-visual-radar"></div>
+
+        <!-- Center icon -->
+        <div class="contact-visual-center">💬</div>
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  // Mouse tracking glow
+  const card = document.getElementById('contact-card');
+  const glow = document.getElementById('contact-glow');
+
+  card?.addEventListener('mouseenter', () => {
+    if (glow) glow.style.opacity = '1';
+  });
+  card?.addEventListener('mouseleave', () => {
+    if (glow) glow.style.opacity = '0';
+  });
+  card?.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', `${x}%`);
+    card.style.setProperty('--mouse-y', `${y}%`);
+  });
+</script>

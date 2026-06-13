@@ -1,5 +1,5 @@
 ---
-// Experience.astro — Updated with real LinkedIn experience data
+// Experience.astro — Two-column alternating timeline, inspired by faisalaffan.com
 import TimelineItem from "../TimelineItem.astro";
 
 const experiences = [
@@ -8,7 +8,7 @@ const experiences = [
     role: "IT Manager",
     company: "PT Mitra Inovasi Gemilang",
     location: "North Jakarta, Indonesia · On-site",
-    desc: "Memimpin pengembangan sistem internal, workflow automation, productivity tracker, management information system, dan ERP/Odoo customization untuk meningkatkan efisiensi operasional perusahaan. Berperan menghubungkan kebutuhan bisnis, arsitektur teknis, tim development, vendor, dan stakeholder agar solusi yang dibangun scalable dan maintainable.",
+    desc: "Memimpin pengembangan sistem internal, workflow automation, productivity tracker, management information system, dan ERP/Odoo customization untuk meningkatkan efisiensi operasional perusahaan. Berperan menghubungkan kebutuhan bisnis, arsitektur teknis, tim development, vendor, dan stakeholder.",
     chips: [
       "IT Management",
       "System Architecture",
@@ -16,7 +16,6 @@ const experiences = [
       "Odoo ERP",
       "Laravel & Vue.js",
       "Team Leadership",
-      "Vendor Management",
     ],
   },
   {
@@ -32,8 +31,6 @@ const experiences = [
       "Node.js",
       "REST API",
       "MySQL",
-      "Dashboard",
-      "Remote Consulting",
     ],
   },
   {
@@ -41,7 +38,7 @@ const experiences = [
     role: "Head of Division, Full-Stack Developer",
     company: "PT eLogistik System Indonesia",
     location: "South Jakarta, Indonesia · Hybrid",
-    desc: "Merancang dan mengembangkan solusi ICT, aplikasi web, sistem kolaborasi, integrasi API, dan modul operasional untuk kebutuhan bisnis klien. Terlibat dalam perancangan arsitektur, pengembangan backend/frontend, manajemen database, serta koordinasi lintas fungsi.",
+    desc: "Merancang dan mengembangkan solusi ICT, aplikasi web, sistem kolaborasi, integrasi API, dan modul operasional untuk kebutuhan bisnis klien. Terlibat dalam perancangan arsitektur, pengembangan backend/frontend, dan koordinasi lintas fungsi.",
     chips: [
       "Solution Architecture",
       "System Integration",
@@ -49,8 +46,6 @@ const experiences = [
       "Laravel",
       "Vue.js",
       "MySQL/PostgreSQL",
-      "Stakeholder Management",
-      "Cross-functional Leadership",
     ],
   },
   {
@@ -58,15 +53,13 @@ const experiences = [
     role: "Full-Stack Developer",
     company: "Logistics Plus Inc.",
     location: "South Jakarta, Indonesia · Hybrid",
-    desc: "Mengembangkan aplikasi logistik dan supply chain untuk mendukung inventory, shipment, warehouse operation, dan visibilitas proses operasional. Fokus pada backend yang stabil, database yang efisien, frontend yang mudah digunakan, serta integrasi API.",
+    desc: "Mengembangkan aplikasi logistik dan supply chain untuk mendukung inventory, shipment, warehouse operation, dan visibilitas proses operasional. Fokus pada backend yang stabil dan integrasi API.",
     chips: [
       "Logistics System",
       "Supply Chain Apps",
       "PHP/Laravel",
       "MySQL/PostgreSQL",
       "API Integration",
-      "Warehouse Operations",
-      "Data Processing",
     ],
   },
   {
@@ -74,14 +67,11 @@ const experiences = [
     role: "Programmer",
     company: "PT Wira Logitama Saksama",
     location: "MM2100 Cibitung, Indonesia · On-site",
-    desc: "Membangun aplikasi internal, modul reporting, dan dukungan teknis untuk menunjang aktivitas pergudangan, administrasi, dan operasional harian. Peran ini menjadi fondasi awal dalam memahami kebutuhan user dan membangun sistem yang benar-benar dipakai.",
+    desc: "Membangun aplikasi internal, modul reporting, dan dukungan teknis untuk menunjang aktivitas pergudangan, administrasi, dan operasional harian. Fondasi awal dalam memahami kebutuhan user.",
     chips: [
       "Internal Software",
       "Reporting Automation",
       "Technical Support",
-      "Warehouse Operations",
-      "Operational Systems",
-      "Troubleshooting",
       "Database",
     ],
   },
@@ -94,13 +84,51 @@ const experiences = [
       <span class="eyebrow">Journey</span>
       <h2 class="section-title" style="margin-top:18px">The road so far</h2>
     </div>
-    <span class="section-index" aria-hidden="true">/ 05 — 06</span>
+    <span class="section-index" aria-hidden="true">/ 06 — 07</span>
   </div>
 
-  <div class="timeline" aria-label="Work experience timeline">
-    <div class="tl-line" aria-hidden="true">
-      <div class="fill" id="tl-fill"></div>
+  <!-- Two-column alternating timeline -->
+  <div class="timeline-container" id="timeline-container" aria-label="Work experience timeline">
+    <!-- Center line -->
+    <div class="timeline-line-wrap" aria-hidden="true">
+      <div class="timeline-line-base"></div>
+      <div class="timeline-line-fill" id="tl-fill"></div>
     </div>
-    {experiences.map((exp) => <TimelineItem {...exp} />)}
+
+    {experiences.map((exp, i) => (
+      <TimelineItem
+        {...exp}
+        side={i % 2 === 0 ? 'left' : 'right'}
+      />
+    ))}
   </div>
 </section>
+
+<script>
+  // Reveal timeline rows on scroll + animate line fill
+  const container = document.getElementById('timeline-container');
+  const fill = document.getElementById('tl-fill');
+  const rows = container?.querySelectorAll('.tl-row');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  rows?.forEach(row => observer.observe(row));
+
+  // Timeline line fill on scroll
+  function updateFill() {
+    if (!container || !fill) return;
+    const rect = container.getBoundingClientRect();
+    const viewH = window.innerHeight;
+    const progress = Math.min(1, Math.max(0, (viewH - rect.top) / (rect.height + viewH)));
+    (fill as HTMLElement).style.transform = `scaleY(${progress})`;
+  }
+
+  window.addEventListener('scroll', updateFill, { passive: true });
+  updateFill();
+</script>

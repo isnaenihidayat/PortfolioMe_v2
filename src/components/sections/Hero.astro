@@ -1,86 +1,378 @@
 ---
-// Hero.astro — Updated with real LinkedIn data
+// Hero.astro — Faithful to faisalaffan.com reference layout
 ---
 
-<header id="top" class="hero wrap">
-  <div class="hero-status reveal">
-    <span class="dot-live" aria-hidden="true"></span>
-    Available for selected freelance &amp; consulting projects · 2026
-  </div>
+<header id="top" class="hero-section">
 
-  <h1 class="hero-title">
-    <span class="line"><span>Full-Stack</span></span>
-    <span class="line"><span class="accent">Solution Architect</span></span>
-    <span class="line"
-      ><span class="outline">&amp; IT</span> <span>Manager</span></span
-    >
-  </h1>
+  <!-- Glow bubbles background -->
+  <div class="glow-bubble glow-bubble--green" aria-hidden="true"></div>
+  <div class="glow-bubble glow-bubble--purple" aria-hidden="true"></div>
 
-  <p class="hero-sub reveal" data-d="2">
-    Saya <strong>Isnaeni Hidayat</strong> — <strong>IT Manager</strong> &amp;
-    <strong>Full-Stack Solution Architect</strong> yang membantu organisasi membangun
-    sistem internal, workflow automation, ERP/Odoo customization, dashboard operasional,
-    dan aplikasi bisnis berbasis AI. Lebih dari 10 tahun menangani pengembangan web
-    end-to-end, dari arsitektur backend, integrasi API, database, hingga antarmuka
-    yang rapi dan mudah digunakan.
-  </p>
+  <div class="hero-wrap">
+    <div class="hero-main">
 
-  <div class="hero-meta">
-    <div class="item reveal" data-d="2">
-      <div class="k"><span data-count="10" data-suffix="+">10+</span></div>
-      <div class="l">Years building</div>
-    </div>
-    <div class="item reveal" data-d="3">
-      <div class="k">
-        <span data-count="4" data-suffix="+ yrs">4+ yrs</span>
+      <!-- ========================================================
+           MOBILE ONLY: Profile card (shown above content on mobile)
+           ======================================================== -->
+      <div class="hero-profile-mobile" aria-hidden="true">
+        <div class="status-bubble status-bubble--mobile">
+          <span class="status-dot status-dot--pulse"></span>
+          <span class="status-bubble__text">SLA 99.9% Uptime 📈</span>
+          <div class="status-bubble__tail"></div>
+        </div>
+        <div class="pcard">
+          <div class="pcard__top">
+            <div class="pcard__photo-wrap pcard__photo-wrap--sm">
+              <img src="/images/profile-3d.png" alt="Isnaeni Hidayat"
+                width="56" height="56" class="pcard__photo" fetchpriority="high" loading="eager" />
+            </div>
+            <div class="pcard__info">
+              <span class="pcard__name">Isnaeni Hidayat</span>
+              <span class="pcard__role">Full-Stack Solution Architect</span>
+              <span class="pcard__tour-hint">10+ yrs · tap profile →</span>
+            </div>
+          </div>
+          <div class="pcard__divider"></div>
+          <div class="pcard__meta">
+            <span class="pcard__location">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Jakarta, ID 🇮🇩
+            </span>
+            <span class="pcard__active">
+              <span class="status-dot status-dot--ping"></span>
+              Active Now
+            </span>
+          </div>
+          <div class="pcard__time-box">
+            <span class="pcard__time-label">Local Time (GMT+7)</span>
+            <span class="pcard__time" id="hero-clock-mobile">--:-- --</span>
+          </div>
+        </div>
       </div>
-      <div class="l">Freelancing</div>
-    </div>
-    <div class="item reveal" data-d="4">
-      <div class="k"><span data-count="5" data-suffix="+">5+</span></div>
-      <div class="l">Companies served</div>
-    </div>
-  </div>
 
-  <div class="hero-actions reveal" data-d="3">
-    <a
-      href="#work"
-      class="btn btn-primary"
-      data-magnetic="0.3"
-      id="hero-cta-work"
-    >
-      View Case Studies <span class="arrow" aria-hidden="true">↗</span>
-    </a>
-    <a
-      href="#contact"
-      class="btn btn-ghost"
-      data-magnetic="0.3"
-      id="hero-cta-contact"
-    >
-      Discuss a Project
-    </a>
-  </div>
+      <!-- ========================================================
+           LEFT: Main content
+           ======================================================== -->
+      <div class="hero-left">
 
-  <!-- tech marquee — real stack -->
-  <div class="marquee reveal" aria-hidden="true">
+        <!-- Backed by pill -->
+        <div class="hero-backed reveal">
+          <span class="hero-backed__dot"></span>
+          <span class="hero-backed__text">Backed by</span>
+          <span class="hero-backed__brand">⚡ Isnaeni Tech</span>
+        </div>
+
+        <!-- Eyebrow typewriter -->
+        <span class="hero-eyebrow reveal" data-d="1" aria-label="Building in Public">
+          <span id="hero-typewriter">Building in Public</span><span class="typewriter-cursor" aria-hidden="true"></span>
+        </span>
+
+        <!-- Headline -->
+        <h1 class="hero-title" aria-label="I build systems that actually scale.">
+          <span class="hero-title__line" aria-hidden="true">
+            <span class="hero-title__word" data-word="I">I</span>
+            <span class="hero-title__space"> </span>
+            <span class="hero-title__word" data-word="build">build</span>
+            <span class="hero-title__space"> </span>
+            <span class="hero-title__word" data-word="systems">systems</span>
+          </span>
+          <span class="hero-title__line hero-title__line--accent" aria-hidden="true">
+            <span class="hero-title__word" data-word="that">that</span>
+            <span class="hero-title__space"> </span>
+            <span class="hero-title__word" data-word="actually">actually</span>
+            <span class="hero-title__space"> </span>
+            <span class="hero-title__word" data-word="scale.">scale.</span>
+          </span>
+        </h1>
+
+        <!-- Role tag mono -->
+        <p class="hero-role-tag reveal" data-d="2">
+          Full-Stack Solution Architect · IT Manager · Odoo · AI Apps · Laravel
+        </p>
+
+        <!-- Description -->
+        <p class="hero-sub reveal" data-d="2">
+          Sole architect of <a href="#work" class="hero-sub__link">enterprise systems</a> — ERP/Odoo customization,
+          workflow automation, and AI-powered apps. Specialized in
+          <span class="hero-chip"><span class="hero-chip__slide">Laravel &amp; Vue.js</span></span>
+          and high-throughput distributed systems.
+        </p>
+
+        <!-- Stats grid -->
+        <div class="hero-stats reveal" data-d="3">
+          <div class="stat-item" data-tooltip="stat-years">
+            <span class="stat-item__num">10+</span>
+            <span class="stat-item__label">Years Building</span>
+            <div class="stat-tooltip" role="tooltip" id="stat-years">
+              <div class="stat-tooltip__head">
+                <span class="stat-tooltip__title">Experience Timeline</span>
+                <span class="stat-tooltip__badge">✓ Verified</span>
+              </div>
+              <p class="stat-tooltip__body">Started at 16, building internal systems, ERP, and AI apps for 10+ years across multiple industries.</p>
+            </div>
+          </div>
+          <div class="stat-item" data-tooltip="stat-projects">
+            <span class="stat-item__num">5+</span>
+            <span class="stat-item__label">Companies Served</span>
+            <div class="stat-tooltip" role="tooltip" id="stat-projects">
+              <div class="stat-tooltip__head">
+                <span class="stat-tooltip__title">Client Portfolio</span>
+                <span class="stat-tooltip__badge">✓ Active</span>
+              </div>
+              <p class="stat-tooltip__body">End-to-end solutions for government, manufacturing, retail, education, and healthcare sectors.</p>
+            </div>
+          </div>
+          <div class="stat-item" data-tooltip="stat-uptime">
+            <span class="stat-item__num">99.9%</span>
+            <span class="stat-item__label">Uptime SLA</span>
+            <div class="stat-tooltip" role="tooltip" id="stat-uptime">
+              <div class="stat-tooltip__head">
+                <span class="stat-tooltip__title">SLA Monitoring</span>
+                <span class="stat-tooltip__badge">✓ 99.9% Met</span>
+              </div>
+              <p class="stat-tooltip__body">Production systems with strict SLA compliance monitored via server uptime tools over 30+ days.</p>
+            </div>
+          </div>
+          <div class="stat-item" data-tooltip="stat-freelance">
+            <span class="stat-item__num">4+ yrs</span>
+            <span class="stat-item__label">Freelancing</span>
+            <div class="stat-tooltip" role="tooltip" id="stat-freelance">
+              <div class="stat-tooltip__head">
+                <span class="stat-tooltip__title">Freelance Track Record</span>
+                <span class="stat-tooltip__badge">✓ Active</span>
+              </div>
+              <p class="stat-tooltip__body">4+ years independent consulting with repeat clients and retainer agreements.</p>
+            </div>
+          </div>
+          <div class="stat-item stat-item--accent" data-tooltip="stat-age">
+            <span class="stat-item__num stat-item__num--accent">10+ y/o</span>
+            <span class="stat-item__label">Since 16 y/o</span>
+            <div class="stat-tooltip stat-tooltip--right" role="tooltip" id="stat-age">
+              <div class="stat-tooltip__head">
+                <span class="stat-tooltip__title">Career &amp; Experience</span>
+                <span class="stat-tooltip__badge">10+ Years</span>
+              </div>
+              <div class="stat-tooltip__timeline">
+                <div class="tl-entry"><span class="tl-year">2016 (16 y/o):</span><span>First web app built.</span></div>
+                <div class="tl-entry"><span class="tl-year">2019 (19 y/o):</span><span>First freelance ERP client.</span></div>
+                <div class="tl-entry"><span class="tl-year">2022 (22 y/o):</span><span>IT Manager at manufacturing.</span></div>
+                <div class="tl-entry"><span class="tl-year">Present:</span><span>Full-Stack Architect &amp; IT Manager.</span></div>
+              </div>
+              <p class="stat-tooltip__body">Dedicated to building enterprise systems since teens.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini nav links -->
+        <div class="hero-nav-links reveal" data-d="4">
+          <a href="#work" class="hero-nav-link"><span class="hero-nav-link__dot"></span>Projects</a>
+          <a href="#about" class="hero-nav-link"><span class="hero-nav-link__dot"></span>About</a>
+          <a href="#contact" class="hero-nav-link"><span class="hero-nav-link__dot"></span>Contact</a>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="hero-actions reveal" data-d="4">
+          <a href="#contact" class="btn btn-primary" id="hero-cta-contact">
+            Get in touch
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="https://github.com/isnaenih" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" id="hero-cta-github">
+            View GitHub
+            <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <div class="btn-resume-wrap" id="hero-cta-resume-wrap">
+            <button class="btn btn-ghost btn-resume" id="hero-cta-resume" aria-expanded="false" aria-haspopup="true">
+              Resume &amp; CV
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="resume-chevron" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="resume-dropdown" id="hero-resume-dropdown" hidden>
+              <a href="/resume" class="resume-dropdown__item">📄 Resume (PDF)</a>
+              <a href="/cv" class="resume-dropdown__item">📋 Full CV</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ========================================================
+           RIGHT COLUMN (Desktop): Photo card + time card
+           ======================================================== -->
+      <div class="hero-right" aria-hidden="true">
+
+        <!-- Photo card -->
+        <div class="hero-right__photo-card reveal" data-d="1">
+
+          <!-- Floating status bubble -->
+          <div class="status-bubble status-bubble--desktop">
+            <span class="status-dot status-dot--pulse"></span>
+            <span class="status-bubble__text">SLA 99.9% Uptime 📈</span>
+            <div class="status-bubble__tail"></div>
+          </div>
+
+          <!-- Curly arrow label -->
+          <div class="curly-label" aria-hidden="true">
+            <svg class="curly-arrow" width="60" height="44" viewBox="0 0 60 44" fill="none">
+              <path d="M58 2C58 2 42 4 32 14C22 24 22 38 22 38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M16 32 L22 40 L28 34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="curly-label__text">🏄‍♂️ Let's work with me 🌊</span>
+          </div>
+
+          <!-- Square photo frame -->
+          <div class="photo-frame">
+            <img
+              src="/images/profile-3d.png"
+              alt="Isnaeni Hidayat — Full-Stack Solution Architect & IT Manager"
+              width="300" height="300"
+              class="photo-frame__img"
+              fetchpriority="high"
+              loading="eager"
+            />
+            <div class="photo-frame__overlay" aria-hidden="true">
+              <span class="photo-frame__overlay-text">View my work ↗</span>
+            </div>
+          </div>
+
+          <!-- Name + verified -->
+          <div class="photo-card__footer">
+            <div>
+              <div class="photo-card__name">Isnaeni Hidayat</div>
+              <div class="photo-card__role">Full-Stack Solution Architect</div>
+            </div>
+            <button class="verified-badge" type="button" aria-label="Verified profile" title="Verified">
+              <svg width="32" height="32" viewBox="0 0 22 22" fill="currentColor" aria-hidden="true"><path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Time / status card -->
+        <div class="hero-right__time-card reveal" data-d="2">
+          <div class="time-card__location-row">
+            <span class="time-card__location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Jakarta, ID 🇮🇩
+            </span>
+            <span class="time-card__active">
+              <span class="status-dot status-dot--ping"></span>
+              Active Now
+            </span>
+          </div>
+          <div class="time-card__clock-box">
+            <span class="time-card__clock-label">Local Time (GMT+7)</span>
+            <span class="time-card__clock" id="hero-clock">--:-- --</span>
+          </div>
+          <div class="time-card__available">
+            <span class="status-dot status-dot--pulse"></span>
+            Available for remote work
+          </div>
+        </div>
+
+      </div><!-- /.hero-right -->
+    </div><!-- /.hero-main -->
+  </div><!-- /.hero-wrap -->
+
+  <!-- Tech marquee -->
+  <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Laravel</span><span>Vue.js</span><span>Node.js</span><span
-        >MySQL</span
-      ><span>PostgreSQL</span><span>PHP</span><span>JavaScript</span><span
-        >Odoo ERP</span
-      ><span>REST API</span><span>Docker</span><span>Linux</span><span>Git</span
-      >
-      <span>Laravel</span><span>Vue.js</span><span>Node.js</span><span
-        >MySQL</span
-      ><span>PostgreSQL</span><span>PHP</span><span>JavaScript</span><span
-        >Odoo ERP</span
-      ><span>REST API</span><span>Docker</span><span>Linux</span><span>Git</span
-      >
+      <span>Laravel</span><span>Vue.js</span><span>Node.js</span><span>MySQL</span><span>PostgreSQL</span><span>PHP</span><span>JavaScript</span><span>Odoo ERP</span><span>REST API</span><span>Docker</span><span>Linux</span><span>Git</span><span>Python</span><span>AI / LLM</span>
+      <span>Laravel</span><span>Vue.js</span><span>Node.js</span><span>MySQL</span><span>PostgreSQL</span><span>PHP</span><span>JavaScript</span><span>Odoo ERP</span><span>REST API</span><span>Docker</span><span>Linux</span><span>Git</span><span>Python</span><span>AI / LLM</span>
     </div>
   </div>
 
-  <div class="hero-scroll" aria-hidden="true">
-    <div class="scroll-bar"></div>
-    SCROLL
-  </div>
 </header>
+
+<script>
+  // Live clock
+  function getWIBTime() {
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    const wib = new Date(utc + 7 * 3600000);
+    let h = wib.getHours();
+    const m = String(wib.getMinutes()).padStart(2, '0');
+    const s = String(wib.getSeconds()).padStart(2, '0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    return `${String(h).padStart(2,'0')}:${m}:${s} ${ampm}`;
+  }
+  function updateClocks() {
+    const t = getWIBTime();
+    const d = document.getElementById('hero-clock');
+    const m = document.getElementById('hero-clock-mobile');
+    if (d) d.textContent = t;
+    if (m) m.textContent = t;
+  }
+  updateClocks();
+  setInterval(updateClocks, 1000);
+
+  // Typewriter eyebrow
+  (function() {
+    const el = document.getElementById('hero-typewriter');
+    if (!el) return;
+    const texts = ['Building in Public', 'IT Manager & Architect', 'Full-Stack Developer', 'Odoo Specialist'];
+    let i = 0, ci = 0, deleting = false;
+    function tick() {
+      const current = texts[i];
+      if (!deleting) {
+        el.textContent = current.slice(0, ci + 1);
+        ci++;
+        if (ci === current.length) { deleting = true; setTimeout(tick, 1800); return; }
+      } else {
+        el.textContent = current.slice(0, ci - 1);
+        ci--;
+        if (ci === 0) { deleting = false; i = (i + 1) % texts.length; }
+      }
+      setTimeout(tick, deleting ? 55 : 80);
+    }
+    setTimeout(tick, 600);
+  })();
+
+  // Char animation for headline
+  (function() {
+    const words = document.querySelectorAll('.hero-title__word');
+    let delay = 0;
+    words.forEach(word => {
+      const text = word.textContent;
+      word.innerHTML = '';
+      for (const char of text) {
+        const span = document.createElement('span');
+        span.className = 'char-anim';
+        span.textContent = char;
+        span.style.animationDelay = delay + 'ms';
+        word.appendChild(span);
+        delay += 18;
+      }
+    });
+  })();
+
+  // Stat tooltip hover
+  document.querySelectorAll('.stat-item').forEach(item => {
+    const tipId = item.dataset.tooltip;
+    const tip = document.getElementById(tipId);
+    if (!tip) return;
+    item.addEventListener('mouseenter', () => tip.classList.add('stat-tooltip--visible'));
+    item.addEventListener('mouseleave', () => tip.classList.remove('stat-tooltip--visible'));
+    item.addEventListener('focus', () => tip.classList.add('stat-tooltip--visible'));
+    item.addEventListener('blur', () => tip.classList.remove('stat-tooltip--visible'));
+  });
+
+  // Resume dropdown
+  const resumeBtn = document.getElementById('hero-cta-resume');
+  const resumeDd = document.getElementById('hero-resume-dropdown');
+  if (resumeBtn && resumeDd) {
+    resumeBtn.addEventListener('click', () => {
+      const open = resumeDd.hidden;
+      resumeDd.hidden = !open;
+      resumeBtn.setAttribute('aria-expanded', String(open));
+      const chevron = resumeBtn.querySelector('.resume-chevron');
+      if (chevron) chevron.style.transform = open ? 'rotate(180deg)' : '';
+    });
+    document.addEventListener('click', e => {
+      if (!resumeBtn.contains(e.target) && !resumeDd.contains(e.target)) {
+        resumeDd.hidden = true;
+        resumeBtn.setAttribute('aria-expanded', 'false');
+        const chevron = resumeBtn.querySelector('.resume-chevron');
+        if (chevron) chevron.style.transform = '';
+      }
+    });
+  }
+</script>

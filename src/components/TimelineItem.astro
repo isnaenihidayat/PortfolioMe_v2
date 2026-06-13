@@ -1,5 +1,5 @@
 ---
-// TimelineItem.astro
+// TimelineItem.astro — Two-column alternating timeline card
 interface Props {
   period: string;
   role: string;
@@ -7,22 +7,34 @@ interface Props {
   location: string;
   desc: string;
   chips: string[];
+  side: 'left' | 'right';
 }
 
-const { period, role, company, location, desc, chips } = Astro.props;
+const { period, role, company, location, desc, chips, side = 'left' } = Astro.props;
 ---
 
-<div class="tl-item">
-  <div class="tl-dot" aria-hidden="true"></div>
-  <div class="tl-when">{period}</div>
-  <div class="tl-role">{role}</div>
-  <div class="tl-co">
-    {company}
-    <span class="sep" aria-hidden="true">·</span>
-    {location}
-  </div>
-  <p class="tl-desc">{desc}</p>
-  <div class="tl-chips" role="list" aria-label="Technologies used">
-    {chips.map(chip => <span role="listitem">{chip}</span>)}
+<div class={`tl-row tl-row--${side}`}>
+  <article class="tl-card reveal">
+    <div class="tl-when">{period}</div>
+    <div class="tl-role">{role}</div>
+    <div class="tl-co">
+      {company}
+      <span class="sep" aria-hidden="true">·</span>
+      <span class="tl-location">{location}</span>
+    </div>
+    <p class="tl-desc">{desc}</p>
+    <div class="tl-chips" role="list" aria-label="Technologies used">
+      {chips.map(chip => <span role="listitem">{chip}</span>)}
+    </div>
+  </article>
+  <div class="tl-dot" aria-hidden="true">
+    <div class="tl-dot-inner"></div>
   </div>
 </div>
+
+<style>
+  .tl-location {
+    color: var(--fg-faint);
+    font-size: 0.85em;
+  }
+</style>

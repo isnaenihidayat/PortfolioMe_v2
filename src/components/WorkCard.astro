@@ -1,5 +1,5 @@
 ---
-// WorkCard.astro
+// WorkCard.astro — Upgraded with glassmorphism, inner glow, tilt effect
 interface Props {
   num: string;
   year: string;
@@ -11,14 +11,19 @@ interface Props {
   image: string;
   imageAlt: string;
   delay?: string;
+  featured?: boolean;
 }
 
-const { num, year, tag, title, desc, stack, href = '#contact', image, imageAlt, delay } = Astro.props;
+const { num, year, tag, title, desc, stack, href = '#contact', image, imageAlt, delay, featured = false } = Astro.props;
 ---
 
-<article class="work-card reveal" data-d={delay}>
+<article class={`work-card reveal ${featured ? 'work-card-featured' : ''}`} data-d={delay}>
+  <!-- Inner hover glow -->
+  <div class="work-card-glow" aria-hidden="true"></div>
+
   <div class="work-thumb">
     <span class="work-tag" aria-hidden="true">{tag}</span>
+    {featured && <span class="work-featured-badge" aria-label="Featured project">★ Featured</span>}
     <img
       src={image}
       alt={imageAlt}
@@ -28,16 +33,29 @@ const { num, year, tag, title, desc, stack, href = '#contact', image, imageAlt, 
       height="500"
     />
   </div>
-  <div class="work-top">
-    <span class="work-num" aria-hidden="true">{num}</span>
-    <span class="work-year">{year}</span>
-  </div>
-  <div class="work-title">
-    {title}
-    <a class="work-arrow" href={href} aria-label={`View ${title}`} data-magnetic="0.25">↗</a>
-  </div>
-  <p class="work-desc">{desc}</p>
-  <div class="work-stack" role="list" aria-label={`${title} tech stack`}>
-    {stack.map(tech => <span role="listitem">{tech}</span>)}
+
+  <div class="work-body">
+    <div class="work-top">
+      <span class="work-num" aria-hidden="true">{num}</span>
+      <span class="work-year">{year}</span>
+    </div>
+
+    <div class="work-title">
+      {title}
+      <a class="work-arrow" href={href} aria-label={`View ${title}`} data-magnetic="0.25" target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>↗</a>
+    </div>
+
+    <p class="work-desc">{desc}</p>
+
+    <div class="work-stack" role="list" aria-label={`${title} tech stack`}>
+      {stack.map(tech => <span role="listitem">{tech}</span>)}
+    </div>
   </div>
 </article>
+
+<style>
+  .work-card-featured {
+    border-color: color-mix(in srgb, var(--accent) 20%, transparent);
+    background: linear-gradient(135deg, var(--color-brand-surface) 60%, color-mix(in srgb, var(--accent) 4%, transparent) 100%);
+  }
+</style>

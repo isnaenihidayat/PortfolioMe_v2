@@ -1,24 +1,39 @@
 ---
-// Nav.astro — Fixed navbar with scroll state, active section, and mobile menu
+// Nav.astro — Updated with logo glow, theme toggle, inspired by faisalaffan.com
 ---
 
 <nav class="nav" id="main-nav" aria-label="Main navigation">
   <a href="#top" class="brand" aria-label="Isnaeni Hidayat — Home">
-    <span class="mark" aria-hidden="true">IH</span>
+    <span class="logo-glow-wrap">
+      <span class="mark" aria-hidden="true">IH</span>
+    </span>
     Isnaeni Hidayat
   </a>
 
   <div class="nav-links" role="list">
-    <a href="#about" role="listitem"><span class="n" aria-hidden="true">01</span>About</a>
-    <a href="#skills" role="listitem"><span class="n" aria-hidden="true">02</span>Stack</a>
-    <a href="#github" role="listitem"><span class="n" aria-hidden="true">03</span>GitHub</a>
-    <a href="#work" role="listitem"><span class="n" aria-hidden="true">04</span>Work</a>
-    <a href="#ai" role="listitem"><span class="n" aria-hidden="true">05</span>AI</a>
+    <a href="#about"      role="listitem"><span class="n" aria-hidden="true">01</span>About</a>
+    <a href="#skills"     role="listitem"><span class="n" aria-hidden="true">02</span>Stack</a>
+    <a href="#github"     role="listitem"><span class="n" aria-hidden="true">03</span>GitHub</a>
+    <a href="#work"       role="listitem"><span class="n" aria-hidden="true">04</span>Work</a>
+    <a href="#ai"         role="listitem"><span class="n" aria-hidden="true">05</span>AI</a>
     <a href="#experience" role="listitem"><span class="n" aria-hidden="true">06</span>Journey</a>
-    <a href="#writing" role="listitem"><span class="n" aria-hidden="true">07</span>Writing</a>
+    <a href="#writing"    role="listitem"><span class="n" aria-hidden="true">07</span>Writing</a>
   </div>
 
-  <a href="#contact" class="nav-cta" data-magnetic="0.4">Let's talk →</a>
+  <div class="nav-right">
+    <!-- Theme Toggle -->
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      aria-label="Toggle dark/light mode"
+      title="Toggle theme"
+    >
+      <span class="theme-icon theme-icon-dark">🌙</span>
+      <span class="theme-icon theme-icon-light" style="display:none">☀️</span>
+    </button>
+
+    <a href="#contact" class="nav-cta" data-magnetic="0.4">Let's talk →</a>
+  </div>
 
   <!-- Mobile hamburger -->
   <button
@@ -38,19 +53,52 @@
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
   <div class="mobile-menu-inner">
     <nav class="mobile-links" role="list">
-      <a href="#about" role="listitem"><span class="n" aria-hidden="true">01</span>About</a>
-      <a href="#skills" role="listitem"><span class="n" aria-hidden="true">02</span>Stack</a>
-      <a href="#github" role="listitem"><span class="n" aria-hidden="true">03</span>GitHub</a>
-      <a href="#work" role="listitem"><span class="n" aria-hidden="true">04</span>Work</a>
-      <a href="#ai" role="listitem"><span class="n" aria-hidden="true">05</span>AI</a>
+      <a href="#about"      role="listitem"><span class="n" aria-hidden="true">01</span>About</a>
+      <a href="#skills"     role="listitem"><span class="n" aria-hidden="true">02</span>Stack</a>
+      <a href="#github"     role="listitem"><span class="n" aria-hidden="true">03</span>GitHub</a>
+      <a href="#work"       role="listitem"><span class="n" aria-hidden="true">04</span>Work</a>
+      <a href="#ai"         role="listitem"><span class="n" aria-hidden="true">05</span>AI</a>
       <a href="#experience" role="listitem"><span class="n" aria-hidden="true">06</span>Journey</a>
-      <a href="#writing" role="listitem"><span class="n" aria-hidden="true">07</span>Writing</a>
+      <a href="#writing"    role="listitem"><span class="n" aria-hidden="true">07</span>Writing</a>
     </nav>
     <a href="#contact" class="mobile-cta">Let's talk →</a>
   </div>
 </div>
 
 <script>
+  /* ── Theme Toggle ── */
+  const themeToggle = document.getElementById('theme-toggle');
+  const iconDark = themeToggle?.querySelector('.theme-icon-dark') as HTMLElement | null;
+  const iconLight = themeToggle?.querySelector('.theme-icon-light') as HTMLElement | null;
+
+  function getStoredTheme(): string {
+    return localStorage.getItem('portfolio-theme') || 'dark';
+  }
+
+  function applyTheme(theme: string) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (iconDark && iconLight) {
+      if (theme === 'dark') {
+        iconDark.style.display = '';
+        iconLight.style.display = 'none';
+      } else {
+        iconDark.style.display = 'none';
+        iconLight.style.display = '';
+      }
+    }
+  }
+
+  // Apply on load
+  applyTheme(getStoredTheme());
+
+  themeToggle?.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('portfolio-theme', next);
+    applyTheme(next);
+  });
+
+  /* ── Mobile Menu ── */
   const hamburger = document.getElementById('nav-hamburger');
   const menu = document.getElementById('mobile-menu');
 
@@ -74,17 +122,20 @@
     menu?.classList.contains('open') ? closeMenu() : openMenu();
   });
 
-  // Close on any mobile link click
   menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-
-  // Close on backdrop click
   menu?.addEventListener('click', (e) => { if (e.target === menu) closeMenu(); });
-
-  // Close on ESC
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 </script>
 
 <style>
+  /* ── Nav right group ── */
+  .nav-right {
+    display: flex; align-items: center; gap: 10px;
+  }
+  @media (max-width: 860px) {
+    .nav-right { display: none; }
+  }
+
   /* ── Hamburger button ── */
   .nav-hamburger {
     display: none;
@@ -116,7 +167,7 @@
     position: fixed;
     inset: 0;
     z-index: 150;
-    background: oklch(0.16 0.012 265 / 0.6);
+    background: color-mix(in srgb, var(--color-brand-bg) 60%, transparent);
     backdrop-filter: blur(8px);
     opacity: 0;
     transition: opacity 0.35s var(--ease);
@@ -129,8 +180,8 @@
     top: 0; right: 0;
     width: min(320px, 85vw);
     height: 100%;
-    background: var(--bg-2);
-    border-left: 1px solid var(--line-soft);
+    background: var(--color-brand-surface);
+    border-left: 1px solid var(--color-brand-border);
     display: flex;
     flex-direction: column;
     padding: 100px 36px 60px;
@@ -151,7 +202,7 @@
     color: var(--fg-mid);
     padding: 14px 0;
     letter-spacing: -0.02em;
-    border-bottom: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--color-brand-border);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -176,7 +227,7 @@
     text-align: center;
     transition: background 0.25s, color 0.25s;
   }
-  .mobile-cta:hover { background: var(--accent); color: var(--bg); }
+  .mobile-cta:hover { background: var(--accent); color: #fff; }
 
   @media (max-width: 860px) { .mobile-menu { display: block; } }
 </style>
