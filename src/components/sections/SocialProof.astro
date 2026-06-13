@@ -1,0 +1,486 @@
+---
+// SocialProof.astro — Full-width proof bar below hero
+// 3 columns: Trusted Companies marquee | Certifications | GitHub Strip
+
+const companies = [
+  { name: "PT Mitra Inovasi Gemilang", url: "#experience", abbr: "MIG" },
+  { name: "PT Wira Logitama Saksama", url: "#experience", abbr: "WLS" },
+  { name: "Laravel", url: "https://laravel.com", abbr: "LR" },
+  { name: "Vue.js", url: "https://vuejs.org", abbr: "VU" },
+  { name: "React", url: "https://react.dev", abbr: "RE" },
+  { name: "Odoo ERP", url: "https://odoo.com", abbr: "OD" },
+  { name: "Node.js", url: "https://nodejs.org", abbr: "NJ" },
+  { name: "PostgreSQL", url: "https://postgresql.org", abbr: "PG" },
+];
+
+const certs = [
+  "Docker CI/CD & DevOps",
+  "Laravel Advanced",
+  "Vue.js & Nuxt",
+  "Odoo Functional & Tech",
+];
+---
+
+<div class="proof-bar">
+  <div class="proof-bar__inner">
+
+    <!-- ── Desktop 3-col layout ── -->
+    <div class="proof-cols">
+
+      <!-- COL 1: Trusted Companies -->
+      <div class="proof-col">
+        <div class="proof-col__content">
+          <span class="proof-label">Industri &amp; Klien Yang Dilayani</span>
+          <div class="proof-marquee-wrap">
+            <div class="proof-marquee-track" aria-label="Trusted companies">
+              <!-- Set 1 -->
+              <div class="proof-marquee-set" aria-hidden="false">
+                {companies.map((c) => (
+                  <a
+                    href={c.url}
+                    target={c.url.startsWith('http') ? '_blank' : '_self'}
+                    rel="noopener noreferrer"
+                    class="proof-company-chip"
+                    title={c.name}
+                  >
+                    <span class="proof-company-abbr">{c.abbr}</span>
+                    <span class="proof-company-name">{c.name}</span>
+                  </a>
+                ))}
+              </div>
+              <!-- Set 2 (clone for seamless loop) -->
+              <div class="proof-marquee-set" aria-hidden="true">
+                {companies.map((c) => (
+                  <a
+                    href={c.url}
+                    target={c.url.startsWith('http') ? '_blank' : '_self'}
+                    rel="noopener noreferrer"
+                    class="proof-company-chip"
+                    title={c.name}
+                    tabindex="-1"
+                  >
+                    <span class="proof-company-abbr">{c.abbr}</span>
+                    <span class="proof-company-name">{c.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#experience" class="proof-link">
+          Lihat Karir
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="proof-divider" aria-hidden="true"></div>
+
+      <!-- COL 2: Certifications -->
+      <div class="proof-col">
+        <div class="proof-col__content">
+          <span class="proof-label">Sertifikasi Verified</span>
+          <div class="proof-certs">
+            {certs.map((cert) => (
+              <div class="proof-cert-chip">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="proof-cert-icon" aria-hidden="true">
+                  <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/>
+                  <circle cx="12" cy="8" r="6"/>
+                </svg>
+                <span>{cert}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <a href="#experience" class="proof-link">
+          Lihat Sertifikat
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="proof-divider" aria-hidden="true"></div>
+
+      <!-- COL 3: GitHub Strip -->
+      <div class="proof-col">
+        <div class="proof-col__content">
+          <span class="proof-label">GitHub Activity</span>
+          <div class="proof-gh-stats">
+            <div class="proof-gh-stat">
+              <strong>20+</strong>
+              <span>repos</span>
+            </div>
+            <div class="proof-gh-dot" aria-hidden="true"></div>
+            <div class="proof-gh-stat">
+              <strong>1k+</strong>
+              <span>kontribusi/thn</span>
+            </div>
+            <div class="proof-gh-dot" aria-hidden="true"></div>
+            <div class="proof-gh-stat">
+              <strong>Active</strong>
+              <span>commits</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://github.com/isnaenihidayat" target="_blank" rel="noopener noreferrer" class="proof-link">
+          Explore @isnaenihidayat
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div><!-- /.proof-cols -->
+
+    <!-- ── Mobile layout ── -->
+    <div class="proof-mobile">
+      <span class="proof-label" style="text-align:center">Industri &amp; Klien Yang Dilayani</span>
+
+      <!-- Mobile marquee -->
+      <div class="proof-marquee-wrap">
+        <div class="proof-marquee-track">
+          <div class="proof-marquee-set" aria-hidden="false">
+            {companies.map((c) => (
+              <a href={c.url} target={c.url.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" class="proof-company-chip" title={c.name}>
+                <span class="proof-company-abbr">{c.abbr}</span>
+                <span class="proof-company-name">{c.name}</span>
+              </a>
+            ))}
+          </div>
+          <div class="proof-marquee-set" aria-hidden="true">
+            {companies.map((c) => (
+              <a href={c.url} target={c.url.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" class="proof-company-chip" title={c.name} tabindex="-1">
+                <span class="proof-company-abbr">{c.abbr}</span>
+                <span class="proof-company-name">{c.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile mini stats -->
+      <div class="proof-mobile-stats">
+        <div class="proof-mobile-stat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="proof-cert-icon" aria-hidden="true">
+            <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/>
+            <circle cx="12" cy="8" r="6"/>
+          </svg>
+          <span>{certs.length} Sertifikasi</span>
+        </div>
+        <div class="proof-gh-dot"></div>
+        <div class="proof-mobile-stat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="proof-cert-icon" aria-hidden="true">
+            <circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/>
+            <path d="M6 21V9a9 9 0 0 0 9 9"/>
+          </svg>
+          <span>20+ Repos</span>
+        </div>
+        <div class="proof-gh-dot"></div>
+        <div class="proof-mobile-stat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="proof-cert-icon" aria-hidden="true">
+            <polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/>
+            <polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/>
+          </svg>
+          <span>Active PRs</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+/* ======================================================
+   SOCIAL PROOF BAR
+   Full-width surface strip between Hero & About
+   ====================================================== */
+
+.proof-bar {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: color-mix(in srgb, var(--color-brand-surface) 60%, transparent);
+  border-top: 1px solid var(--color-brand-border);
+  border-bottom: 1px solid var(--color-brand-border);
+  padding: 28px 0;
+  overflow: hidden;
+}
+
+/* Edge fade masks */
+.proof-bar::before,
+.proof-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.proof-bar::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-brand-bg), transparent);
+}
+.proof-bar::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-brand-bg), transparent);
+}
+
+.proof-bar__inner {
+  max-width: var(--maxw, 1120px);
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: var(--gutter, 24px);
+}
+
+/* ── 3-col desktop layout ── */
+.proof-cols {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .proof-cols {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 28px;
+  }
+  .proof-mobile { display: none !important; }
+}
+
+.proof-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.proof-col__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.proof-divider {
+  width: 1px;
+  background: var(--color-brand-border);
+  flex-shrink: 0;
+}
+
+/* ── Label (caption) ── */
+.proof-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--fg-dim, color-mix(in srgb, var(--fg) 40%, transparent));
+  font-family: var(--mono);
+  display: block;
+}
+
+/* ── "See more" link ── */
+.proof-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  font-family: var(--mono);
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+  line-height: 1;
+  margin-top: auto;
+  align-self: flex-start;
+}
+.proof-link:hover {
+  color: var(--color-brand-accent-hover, var(--accent));
+  text-decoration: underline;
+  gap: 6px;
+}
+.proof-link svg {
+  transition: transform 0.2s;
+}
+.proof-link:hover svg {
+  transform: translateX(2px);
+}
+
+/* ══════════════════════════════════
+   MARQUEE
+   ══════════════════════════════════ */
+.proof-marquee-wrap {
+  width: 100%;
+  overflow: hidden;
+  height: 28px;
+  position: relative;
+}
+
+.proof-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: proofMarquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-marquee-track { animation: none; }
+}
+
+.proof-marquee-wrap:hover .proof-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes proofMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.proof-marquee-set {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 10px;
+  flex-shrink: 0;
+}
+
+/* Company chip — text-based since we don't have logo PNGs */
+.proof-company-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-brand-border) 60%, transparent);
+  background: color-mix(in srgb, var(--color-brand-surface) 50%, transparent);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.proof-company-chip:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+
+.proof-company-abbr {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.proof-company-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--fg-mid, color-mix(in srgb, var(--fg) 65%, transparent));
+  line-height: 1;
+}
+
+/* ══════════════════════════════════
+   CERTIFICATIONS
+   ══════════════════════════════════ */
+.proof-certs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.proof-cert-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--color-brand-border);
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-brand-surface) 80%, transparent);
+  align-self: flex-start;
+  transition: border-color 0.15s;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--fg);
+}
+
+.proof-cert-chip:hover {
+  border-color: color-mix(in srgb, var(--fg) 30%, transparent);
+}
+
+.proof-cert-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════
+   GITHUB STATS
+   ══════════════════════════════════ */
+.proof-gh-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.proof-gh-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.proof-gh-stat strong {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--fg);
+  font-family: var(--display);
+  line-height: 1;
+}
+
+.proof-gh-stat span {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-mid, color-mix(in srgb, var(--fg) 60%, transparent));
+}
+
+.proof-gh-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-brand-border);
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════
+   MOBILE LAYOUT
+   ══════════════════════════════════ */
+.proof-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.proof-mobile-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.proof-mobile-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--fg);
+}
+</style>
