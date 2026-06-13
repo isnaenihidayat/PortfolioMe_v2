@@ -1,79 +1,56 @@
 ---
-// Experience.astro — Two-column alternating timeline, inspired by faisalaffan.com
-import TimelineItem from "../TimelineItem.astro";
+// Experience.astro — Two-column alternating timeline, faithful to faisalaffan.com
 
 const experiences = [
   {
     period: "Feb 2026 — Present",
     role: "IT Manager",
     company: "PT Mitra Inovasi Gemilang",
-    location: "North Jakarta, Indonesia · On-site",
+    location: "North Jakarta · On-site",
+    type: "Full-time",
     desc: "Memimpin pengembangan sistem internal, workflow automation, productivity tracker, management information system, dan ERP/Odoo customization untuk meningkatkan efisiensi operasional perusahaan. Berperan menghubungkan kebutuhan bisnis, arsitektur teknis, tim development, vendor, dan stakeholder.",
-    chips: [
-      "IT Management",
-      "System Architecture",
-      "Workflow Automation",
-      "Odoo ERP",
-      "Laravel & Vue.js",
-      "Team Leadership",
-    ],
+    chips: ["IT Management", "System Architecture", "Workflow Automation", "Odoo ERP", "Laravel & Vue.js", "Team Leadership"],
+    current: true,
   },
   {
     period: "Mar 2022 — Present",
     role: "Full-Stack Developer / Consultant",
     company: "Freelance",
     location: "Remote",
+    type: "Freelance",
     desc: "Membantu bisnis dan organisasi membangun aplikasi web, dashboard, sistem internal, dan integrasi API secara end-to-end. Fokus pada solusi yang praktis, mudah digunakan, mudah dirawat, dan sesuai dengan proses kerja nyata.",
-    chips: [
-      "Full-Stack Development",
-      "Laravel",
-      "Vue.js",
-      "Node.js",
-      "REST API",
-      "MySQL",
-    ],
+    chips: ["Full-Stack Development", "Laravel", "Vue.js", "Node.js", "REST API", "MySQL"],
+    current: true,
   },
   {
     period: "Aug 2016 — Apr 2023",
     role: "Head of Division, Full-Stack Developer",
     company: "PT eLogistik System Indonesia",
-    location: "South Jakarta, Indonesia · Hybrid",
+    location: "South Jakarta · Hybrid",
+    type: "Full-time",
     desc: "Merancang dan mengembangkan solusi ICT, aplikasi web, sistem kolaborasi, integrasi API, dan modul operasional untuk kebutuhan bisnis klien. Terlibat dalam perancangan arsitektur, pengembangan backend/frontend, dan koordinasi lintas fungsi.",
-    chips: [
-      "Solution Architecture",
-      "System Integration",
-      "API Integration",
-      "Laravel",
-      "Vue.js",
-      "MySQL/PostgreSQL",
-    ],
+    chips: ["Solution Architecture", "System Integration", "API Integration", "Laravel", "Vue.js", "MySQL/PostgreSQL"],
+    current: false,
   },
   {
     period: "Aug 2015 — Jul 2016",
     role: "Full-Stack Developer",
     company: "Logistics Plus Inc.",
-    location: "South Jakarta, Indonesia · Hybrid",
+    location: "South Jakarta · Hybrid",
+    type: "Full-time",
     desc: "Mengembangkan aplikasi logistik dan supply chain untuk mendukung inventory, shipment, warehouse operation, dan visibilitas proses operasional. Fokus pada backend yang stabil dan integrasi API.",
-    chips: [
-      "Logistics System",
-      "Supply Chain Apps",
-      "PHP/Laravel",
-      "MySQL/PostgreSQL",
-      "API Integration",
-    ],
+    chips: ["Logistics System", "Supply Chain Apps", "PHP/Laravel", "MySQL/PostgreSQL", "API Integration"],
+    current: false,
   },
   {
     period: "Aug 2013 — Aug 2015",
     role: "Programmer",
     company: "PT Wira Logitama Saksama",
-    location: "MM2100 Cibitung, Indonesia · On-site",
+    location: "MM2100 Cibitung · On-site",
+    type: "Full-time",
     desc: "Membangun aplikasi internal, modul reporting, dan dukungan teknis untuk menunjang aktivitas pergudangan, administrasi, dan operasional harian. Fondasi awal dalam memahami kebutuhan user.",
-    chips: [
-      "Internal Software",
-      "Reporting Automation",
-      "Technical Support",
-      "Database",
-    ],
+    chips: ["Internal Software", "Reporting Automation", "Technical Support", "Database"],
+    current: false,
   },
 ];
 ---
@@ -87,36 +64,67 @@ const experiences = [
     <span class="section-index" aria-hidden="true">/ 06 — 07</span>
   </div>
 
-  <!-- Two-column alternating timeline -->
+  <!-- Timeline container -->
   <div class="timeline-container" id="timeline-container" aria-label="Work experience timeline">
     <!-- Center line -->
-    <div class="timeline-line-wrap" aria-hidden="true">
+    <div class="timeline-line" aria-hidden="true">
       <div class="timeline-line-base"></div>
       <div class="timeline-line-fill" id="tl-fill"></div>
     </div>
 
     {experiences.map((exp, i) => (
-      <TimelineItem
-        {...exp}
-        side={i % 2 === 0 ? 'left' : 'right'}
-      />
+      <div class={`timeline-row tl-row reveal ${i % 2 === 0 ? 'timeline-row--left' : 'timeline-row--right'}`} data-d={String(i)}>
+        <div class="timeline-card" data-idx={i}>
+          <!-- Dot -->
+          <div class="timeline-dot" aria-hidden="true">
+            <div class="timeline-dot-inner"></div>
+          </div>
+
+          <!-- Card header -->
+          <div class="tc-header">
+            <div class="tc-period-row">
+              <span class="tc-period">{exp.period}</span>
+              {exp.current && <span class="tc-current-badge">● Active</span>}
+            </div>
+            <div class="tc-type">{exp.type}</div>
+          </div>
+
+          <!-- Role + Company -->
+          <h3 class="tc-role">{exp.role}</h3>
+          <div class="tc-company">
+            <span class="tc-company-name">{exp.company}</span>
+            <span class="tc-separator">·</span>
+            <span class="tc-location">{exp.location}</span>
+          </div>
+
+          <!-- Description -->
+          <p class="tc-desc">{exp.desc}</p>
+
+          <!-- Chip tags -->
+          <div class="tc-chips">
+            {exp.chips.map(chip => (
+              <span class="tc-chip">{chip}</span>
+            ))}
+          </div>
+        </div>
+      </div>
     ))}
   </div>
 </section>
 
 <script>
-  // Reveal timeline rows on scroll + animate line fill
   const container = document.getElementById('timeline-container');
   const fill = document.getElementById('tl-fill');
   const rows = container?.querySelectorAll('.tl-row');
 
+  // Reveal rows + dots on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('revealed');
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.25 });
 
   rows?.forEach(row => observer.observe(row));
 
@@ -132,3 +140,197 @@ const experiences = [
   window.addEventListener('scroll', updateFill, { passive: true });
   updateFill();
 </script>
+
+<style>
+  .timeline-container {
+    position: relative;
+    padding: 16px 0;
+    margin-top: 48px;
+  }
+
+  /* Center line */
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    transform: translateX(-50%);
+  }
+  .timeline-line-base {
+    position: absolute;
+    inset: 0;
+    background: var(--color-brand-border);
+  }
+  .timeline-line-fill {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--color-brand-accent), color-mix(in srgb, var(--color-brand-accent) 40%, transparent));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1.8s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-line-fill { transition: none; transform: scaleY(1); }
+  }
+
+  /* Row */
+  .timeline-row {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 48px;
+  }
+  .timeline-row:last-child { padding-bottom: 0; }
+
+  .timeline-row--left { justify-content: flex-start; }
+  .timeline-row--left .timeline-card { margin-right: auto; }
+  .timeline-row--right { justify-content: flex-end; }
+  .timeline-row--right .timeline-card { margin-left: auto; }
+
+  /* Card */
+  .timeline-card {
+    position: relative;
+    background: var(--color-brand-surface);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    width: calc(50% - 36px);
+    transition: border-color 0.3s ease,
+                transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.3s ease;
+  }
+  .timeline-card:hover {
+    border-color: color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
+  }
+
+  /* Dot */
+  .timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 28px;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--color-brand-border);
+    background: var(--color-brand-bg);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .timeline-dot-inner {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+    transform: scale(0);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .timeline-row.revealed .timeline-dot {
+    border-color: var(--color-brand-accent);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--color-brand-accent) 30%, transparent);
+  }
+  .timeline-row.revealed .timeline-dot-inner { transform: scale(1); }
+
+  /* Card internals */
+  .tc-header { margin-bottom: 10px; }
+  .tc-period-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tc-period {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-brand-text-tertiary);
+    font-weight: 500;
+  }
+  .tc-current-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #3fb950;
+    background: rgba(63, 185, 80, 0.1);
+    border: 1px solid rgba(63, 185, 80, 0.2);
+    border-radius: 999px;
+    padding: 0.1rem 0.5rem;
+  }
+  .tc-type {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-brand-accent);
+    margin-top: 3px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .tc-role {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-brand-text-primary);
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+  .tc-company {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .tc-company-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-brand-text-secondary);
+  }
+  .tc-separator { color: var(--color-brand-border); }
+  .tc-location {
+    font-size: 0.78rem;
+    color: var(--color-brand-text-tertiary);
+  }
+  .tc-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--color-brand-text-secondary);
+    margin: 0 0 14px;
+  }
+  .tc-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tc-chip {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--color-brand-text-secondary);
+    background: var(--color-brand-surface-alt);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 4px;
+    padding: 2px 8px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .timeline-card:hover .tc-chip {
+    border-color: color-mix(in srgb, var(--color-brand-accent) 20%, transparent);
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .timeline-line { left: 14px; }
+    .timeline-row { padding-left: 40px; }
+    .timeline-card { width: 100%; }
+    .timeline-dot { left: 14px; top: 28px; }
+    .timeline-row--left, .timeline-row--right { justify-content: flex-start; }
+    .timeline-row--left .timeline-card, .timeline-row--right .timeline-card { margin: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-card, .timeline-dot, .timeline-dot-inner { transition: none; }
+  }
+</style>

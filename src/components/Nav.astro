@@ -45,18 +45,20 @@
       </div>
 
       <!-- Resume button -->
-      <button class="hdr-btn hdr-btn--resume" id="hdr-resume-btn" aria-label="Open resume" aria-haspopup="true" aria-expanded="false">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/>
-          <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
-          <path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>
-        </svg>
-        Resume
-        <svg class="hdr-resume-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      <div class="hdr-resume-dd" id="hdr-resume-dd" hidden>
-        <a href="/resume" class="hdr-resume-dd__item">📄 Resume (PDF)</a>
-        <a href="/cv" class="hdr-resume-dd__item">📋 Full CV</a>
+      <div class="hdr-resume-wrap">
+        <button class="hdr-btn hdr-btn--resume" id="hdr-resume-btn" aria-label="Open resume" aria-haspopup="true" aria-expanded="false">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/>
+            <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
+            <path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>
+          </svg>
+          Resume
+          <svg class="hdr-resume-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="hdr-resume-dd" id="hdr-resume-dd" hidden>
+          <a href="https://drive.google.com/file/d/isnaeni-resume" target="_blank" rel="noopener" class="hdr-resume-dd__item">📄 Resume (PDF)</a>
+          <a href="https://drive.google.com/file/d/isnaeni-cv" target="_blank" rel="noopener" class="hdr-resume-dd__item">📋 Full CV</a>
+        </div>
       </div>
 
       <!-- Contact CTA -->
@@ -434,18 +436,25 @@
   opacity: 0.6;
 }
 
+/* Resume dropdown wrapper */
+.hdr-resume-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
 /* Resume dropdown */
 .hdr-resume-dd {
   position: absolute;
   top: calc(100% + 8px);
-  left: 0;
+  right: 0;
   background: var(--color-brand-surface);
   border: 1px solid var(--color-brand-border);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-  min-width: 160px;
+  min-width: 170px;
   z-index: 100;
+  white-space: nowrap;
 }
 
 .hdr-resume-dd__item {
@@ -461,11 +470,6 @@
 .hdr-resume-dd__item:hover {
   background: color-mix(in srgb, var(--accent) 8%, transparent);
   color: var(--accent);
-}
-
-/* Resume btn container needs relative position */
-.hdr-nav {
-  position: relative;
 }
 
 .hdr-btn--cta {

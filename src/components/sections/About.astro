@@ -1,12 +1,12 @@
 ---
-// About.astro — Pull quote card + marquee roles, inspired by faisalaffan.com
+// About.astro — Faithful to faisalaffan.com about section
 ---
 
 <section id="about" class="section-pad wrap">
   <div class="section-head reveal">
     <div>
       <span class="eyebrow">About</span>
-      <h2 class="section-title" style="margin-top:18px">
+      <h2 class="about-headline" style="margin-top:18px">
         Dari kebutuhan<br />menjadi sistem.
       </h2>
     </div>
@@ -14,111 +14,366 @@
   </div>
 
   <div class="about-grid">
-    <!-- LEFT: Lead text + pull quote -->
-    <div>
+    <!-- LEFT: Lead + pullquote + role marquee -->
+    <div class="about-left">
       <p class="about-lead reveal">
-        Saya menggabungkan <em>rekayasa full-stack</em>, <em>manajemen IT</em> dan <em
-          >pemahaman proses bisnis</em
-        > untuk membangun sistem yang bukan hanya berjalan — tapi <em>scalable</em>,
-        <em>maintainable</em>, dan benar-benar menyelesaikan masalah operasional.
+        Saya menggabungkan <em>rekayasa full-stack</em>, <em>manajemen IT</em> dan
+        <em>pemahaman proses bisnis</em> untuk membangun sistem yang bukan hanya
+        berjalan — tapi <em>scalable</em>, <em>maintainable</em>, dan benar-benar
+        menyelesaikan masalah operasional.
       </p>
 
-      <!-- Pull quote card -->
+      <!-- Pullquote card -->
       <div class="about-pullquote-card reveal" data-d="2">
         <span class="about-pullquote-mark" aria-hidden="true">"</span>
         <p class="about-pullquote-text">
           Build things that last — not just things that look good.
           Technology should serve people, not the other way around.
         </p>
+        <div class="quote-divider"></div>
+        <p class="quote-subtitle">PHILOSOPHY</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="quote-pill">System-first thinking</span>
+          <span class="quote-pill">Pragmatic engineering</span>
+          <span class="quote-pill">User-centered design</span>
+        </div>
       </div>
 
       <!-- Role marquee cards -->
       <div class="about-roles-marquee reveal" data-d="3" aria-hidden="true">
         <div class="about-roles-track">
           <!-- Set 1 -->
-          <div class="role-card">
-            <span class="rc-tag">Primary</span>
-            <div class="rc-title">IT Manager</div>
-            <div class="rc-desc">Memimpin tim & strategi teknis</div>
+          <div class="about-role-card">
+            <span class="role-tag">Primary</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">IT Manager</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">Memimpin tim &amp; strategi teknis</div>
           </div>
-          <div class="role-card">
-            <span class="rc-tag">Core</span>
-            <div class="rc-title">Full-Stack Dev</div>
-            <div class="rc-desc">Laravel, Vue.js, Node.js</div>
+          <div class="about-role-card">
+            <span class="role-tag">Core</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">Full-Stack Dev</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">Laravel, Vue.js, Node.js</div>
           </div>
-          <div class="role-card">
-            <span class="rc-tag">Specialty</span>
-            <div class="rc-title">Solution Architect</div>
-            <div class="rc-desc">System design & integration</div>
+          <div class="about-role-card">
+            <span class="role-tag">Specialty</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">Solution Architect</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">System design &amp; integration</div>
           </div>
-          <div class="role-card">
-            <span class="rc-tag">Focus</span>
-            <div class="rc-title">ERP Specialist</div>
-            <div class="rc-desc">Odoo customization & deployment</div>
+          <div class="about-role-card">
+            <span class="role-tag">Focus</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">ERP Specialist</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">Odoo customization &amp; deployment</div>
           </div>
-          <div class="role-card">
-            <span class="rc-tag">Growing</span>
-            <div class="rc-title">AI Developer</div>
-            <div class="rc-desc">AI-assisted business apps</div>
+          <div class="about-role-card">
+            <span class="role-tag">Growing</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">AI Developer</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">AI-assisted business apps</div>
           </div>
           <!-- Set 2 (duplicate for infinite scroll) -->
-          <div class="role-card">
-            <span class="rc-tag">Primary</span>
-            <div class="rc-title">IT Manager</div>
-            <div class="rc-desc">Memimpin tim & strategi teknis</div>
+          <div class="about-role-card">
+            <span class="role-tag">Primary</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">IT Manager</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">Memimpin tim &amp; strategi teknis</div>
           </div>
-          <div class="role-card">
-            <span class="rc-tag">Core</span>
-            <div class="rc-title">Full-Stack Dev</div>
-            <div class="rc-desc">Laravel, Vue.js, Node.js</div>
+          <div class="about-role-card">
+            <span class="role-tag">Core</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">Full-Stack Dev</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">Laravel, Vue.js, Node.js</div>
           </div>
-          <div class="role-card">
-            <span class="rc-tag">Specialty</span>
-            <div class="rc-title">Solution Architect</div>
-            <div class="rc-desc">System design & integration</div>
+          <div class="about-role-card">
+            <span class="role-tag">Specialty</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">Solution Architect</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">System design &amp; integration</div>
           </div>
-          <div class="role-card">
-            <span class="rc-tag">Focus</span>
-            <div class="rc-title">ERP Specialist</div>
-            <div class="rc-desc">Odoo customization & deployment</div>
+          <div class="about-role-card">
+            <span class="role-tag">Focus</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">ERP Specialist</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">Odoo customization &amp; deployment</div>
           </div>
-          <div class="role-card">
-            <span class="rc-tag">Growing</span>
-            <div class="rc-title">AI Developer</div>
-            <div class="rc-desc">AI-assisted business apps</div>
+          <div class="about-role-card">
+            <span class="role-tag">Growing</span>
+            <div class="rc-title" style="margin-top:12px;font-size:1rem;font-weight:700;color:var(--color-brand-text-primary)">AI Developer</div>
+            <div class="rc-desc" style="margin-top:6px;font-size:0.8rem;color:var(--color-brand-text-secondary)">AI-assisted business apps</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- RIGHT: Body text + tags -->
-    <div class="about-body reveal" data-d="2">
-      <p>
-        Dengan pengalaman lebih dari <strong>10 tahun</strong> di industri teknologi, saya
-        terbiasa menangani pengembangan sistem end-to-end: mulai dari
-        <strong>menggali kebutuhan user, merancang arsitektur aplikasi, membangun
-        backend</strong> dan REST API, menata database, hingga menghadirkan antarmuka yang
-        rapi dan mudah digunakan.
+    <!-- RIGHT: Body text + tags + AI card -->
+    <div class="about-right reveal" data-d="2">
+      <p class="about-body-text">
+        Dengan pengalaman lebih dari <strong class="about-brand-name">10 tahun</strong> di industri teknologi,
+        saya terbiasa menangani pengembangan sistem end-to-end: mulai dari menggali kebutuhan user,
+        merancang arsitektur aplikasi, membangun backend dan REST API, menata database, hingga
+        menghadirkan antarmuka yang rapi dan mudah digunakan.
       </p>
-      <p>
-        Dalam beberapa tahun terakhir, fokus saya berkembang ke <strong
-          >internal business system, workflow automation, ERP/Odoo
-          customization, dashboard operasional, dan AI-assisted applications.</strong
-        > Saya tertarik membangun teknologi yang praktis — bukan sekadar terlihat modern,
+      <p class="about-body-text" style="margin-top:18px">
+        Dalam beberapa tahun terakhir, fokus saya berkembang ke
+        <strong>internal business system, workflow automation, ERP/Odoo customization,
+        dashboard operasional, dan AI-assisted applications.</strong>
+        Saya tertarik membangun teknologi yang praktis — bukan sekadar terlihat modern,
         tetapi benar-benar membantu tim bekerja lebih cepat, lebih terukur, dan lebih efisien.
       </p>
 
-      <div class="about-tags">
-        <span class="tag">Laravel &amp; PHP</span>
-        <span class="tag">Vue.js</span>
-        <span class="tag">REST API</span>
-        <span class="tag">Odoo ERP</span>
-        <span class="tag">Internal System</span>
-        <span class="tag">IT Management</span>
-        <span class="tag">AI-Assisted Apps</span>
-        <span class="tag">System Design</span>
-        <span class="tag">Dashboard &amp; Reporting</span>
+      <!-- Tags / Pills -->
+      <div class="about-pills" style="margin-top:24px;display:flex;flex-wrap:wrap;gap:8px">
+        <span class="about-pill">Laravel &amp; PHP</span>
+        <span class="about-pill">Vue.js</span>
+        <span class="about-pill">REST API</span>
+        <span class="about-pill">Odoo ERP</span>
+        <span class="about-pill">Internal System</span>
+        <span class="about-pill">IT Management</span>
+        <span class="about-pill">AI-Assisted Apps</span>
+        <span class="about-pill">System Design</span>
+        <span class="about-pill">Dashboard &amp; Reporting</span>
+      </div>
+
+      <!-- AI card -->
+      <div class="about-ai-card group" style="margin-top:28px">
+        <div class="about-ai-pulse-wave"></div>
+        <div class="about-ai-pulse-wave delay-wave"></div>
+        <div style="position:relative;z-index:1">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <div style="width:36px;height:36px;border-radius:10px;background:color-mix(in srgb,var(--color-brand-accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--color-brand-accent) 20%,transparent);display:flex;align-items:center;justify-content:center;font-size:18px">🤖</div>
+            <div>
+              <div style="font-weight:700;font-size:0.875rem;color:var(--color-brand-text-primary)">AI-Assisted Development</div>
+              <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--color-brand-accent)">Active · 2024–Present</div>
+            </div>
+          </div>
+          <p style="font-size:0.85rem;color:var(--color-brand-text-secondary);line-height:1.6;margin:0">
+            Mengintegrasikan LLM, RAG pipelines, dan AI-assisted automation ke dalam aplikasi bisnis nyata —
+            bukan hanya sebagai eksperimen, tapi sebagai fitur produksi yang berdampak.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .about-headline {
+    font-family: var(--font-display);
+    font-size: 2.75rem;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: var(--color-brand-text-primary);
+  }
+  @media (max-width: 640px) { .about-headline { font-size: 2rem; } }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    margin-top: 48px;
+    align-items: start;
+  }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+  .about-lead {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-brand-text-secondary);
+    margin: 0 0 28px;
+  }
+  .about-lead em { color: var(--color-brand-text-primary); font-style: normal; font-weight: 600; }
+
+  /* Pullquote */
+  .about-pullquote-card {
+    position: relative;
+    background: var(--color-brand-surface);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem 1.75rem;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .about-pullquote-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at top left, color-mix(in srgb, var(--color-brand-accent) 8%, transparent), transparent 70%);
+    pointer-events: none;
+  }
+  .about-pullquote-mark {
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    line-height: 0.5;
+    color: var(--color-brand-accent);
+    opacity: 0.2;
+    margin-bottom: 0.25rem;
+    display: block;
+    user-select: none;
+  }
+  .about-pullquote-text {
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--color-brand-text-primary);
+    letter-spacing: -0.01em;
+    margin: 0.5rem 0 0;
+  }
+  .quote-divider {
+    height: 1px;
+    background: var(--color-brand-border);
+    opacity: 0.4;
+    margin: 1.25rem 0;
+  }
+  .quote-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-brand-accent);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .quote-pill {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--color-brand-text-secondary);
+    background: var(--color-brand-bg);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  /* Role marquee */
+  .about-roles-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  .about-roles-marquee::before,
+  .about-roles-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 60px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .about-roles-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-brand-bg), transparent);
+  }
+  .about-roles-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-brand-bg), transparent);
+  }
+  .about-roles-track {
+    display: flex;
+    width: max-content;
+    animation: about-marquee 40s linear infinite;
+  }
+  .about-roles-marquee:hover .about-roles-track { animation-play-state: paused; }
+  @keyframes about-marquee {
+    from { transform: translateZ(0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  .about-role-card {
+    position: relative;
+    background: var(--color-brand-surface);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    min-height: 120px;
+    width: 200px;
+    flex-shrink: 0;
+    margin-right: 14px;
+    cursor: pointer;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .about-role-card:hover {
+    border-color: color-mix(in srgb, var(--color-brand-accent) 35%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-brand-accent) 15%, transparent),
+                0 8px 24px rgba(0,0,0,0.2),
+                0 0 48px color-mix(in srgb, var(--color-brand-accent) 8%, transparent);
+  }
+  .role-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--color-brand-accent);
+    background: color-mix(in srgb, var(--color-brand-accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-brand-accent) 15%, transparent);
+    border-radius: 4px;
+    padding: 0.15rem 0.45rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  /* Right column */
+  .about-body-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-brand-text-secondary);
+    margin: 0;
+  }
+  .about-brand-name {
+    font-weight: 700;
+    color: var(--color-brand-text-primary);
+    border-bottom: 2px solid var(--color-brand-accent);
+    padding-bottom: 1px;
+  }
+  .about-pill {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-brand-text-secondary);
+    background: var(--color-brand-surface);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    letter-spacing: 0.02em;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    cursor: default;
+  }
+  .about-pill:hover {
+    color: var(--color-brand-accent);
+    border-color: color-mix(in srgb, var(--color-brand-accent) 40%, transparent);
+    background: color-mix(in srgb, var(--color-brand-accent) 6%, transparent);
+  }
+
+  /* AI card */
+  .about-ai-card {
+    position: relative;
+    background: var(--color-brand-surface);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .about-ai-card:hover {
+    border-color: color-mix(in srgb, var(--color-brand-accent) 35%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2), 0 0 32px color-mix(in srgb, var(--color-brand-accent) 6%, transparent);
+  }
+  .about-ai-pulse-wave {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
+    background: transparent;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    box-shadow: 0 0 45px 12px color-mix(in srgb, var(--color-brand-accent) 15%, transparent);
+  }
+  .about-ai-card:not(:hover) .about-ai-pulse-wave {
+    animation: about-ai-pulse 5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+  .about-ai-card:not(:hover) .about-ai-pulse-wave.delay-wave {
+    animation-delay: 2.5s;
+  }
+  @keyframes about-ai-pulse {
+    0% { transform: scale(1); opacity: 0; }
+    15% { opacity: 0.55; }
+    100% { transform: scale(1.08); opacity: 0; }
+  }
+</style>

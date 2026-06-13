@@ -1,8 +1,21 @@
 ---
-// Work.astro
-import WorkCard from "../WorkCard.astro";
+// Work.astro — Project cards with filter, tilt, highlight, shard animation
+interface Project {
+  num: string;
+  year: string;
+  tag: string;
+  title: string;
+  desc: string;
+  stack: string[];
+  image: string;
+  imageAlt: string;
+  delay: string;
+  href: string;
+  featured?: boolean;
+  filterTags?: string[];
+}
 
-const projects = [
+const projects: Project[] = [
   {
     num: "01",
     year: "2026 — Present",
@@ -12,9 +25,10 @@ const projects = [
     stack: ["React.js", "Vite", "PHP", "Laravel", "PostgreSQL", "Tailwind CSS"],
     image: "/images/tracker.png",
     imageAlt: "Employee Daily Activity Tracker System dashboard preview",
-    delay: "2",
+    delay: "0",
     href: "https://tracker.mingpromo.com/",
     featured: true,
+    filterTags: ["Internal System"],
   },
   {
     num: "02",
@@ -22,34 +36,26 @@ const projects = [
     tag: "Learning Platform",
     title: "LMS & Skill Matrix",
     desc: "Platform internal yang menggabungkan Learning Management System dan Skill Matrix untuk mengelola pelatihan karyawan, memantau progres pembelajaran, serta memetakan level kompetensi dan skill gap. Sistem ini membantu HR dan manajemen melihat kebutuhan training secara lebih terstruktur, real-time, dan berbasis data.",
-    stack: [
-      "Laravel",
-      "PostgreSQL",
-      "React.js",
-      "Vue.js",
-      "PHP",
-      "Vite",
-      "Tailwind CSS",
-      "TypeScript",
-      "Shadcn/UI",
-    ],
+    stack: ["Laravel", "PostgreSQL", "React.js", "Vue.js", "TypeScript", "Shadcn/UI"],
     image: "/images/lms.png",
     imageAlt: "LMS and Skill Matrix platform dashboard preview",
-    delay: "2",
+    delay: "1",
     href: "https://lms.mingpromo.com/",
     featured: true,
+    filterTags: ["Internal System"],
   },
   {
     num: "03",
     year: "2026",
     tag: "Healthcare Website",
     title: "Klinik & Rumah Bersalin Nur Fajar",
-    desc: "Website company profile untuk klinik dan rumah bersalin yang menampilkan informasi layanan kesehatan keluarga, jadwal operasional, fasilitas, artikel edukasi, kontak, lokasi, serta formulir janji temu. Dibangun dengan pendekatan modern, responsif, dan mudah dinavigasi agar pasien dapat memahami layanan klinik dan melakukan appointment dengan lebih cepat.",
+    desc: "Website company profile untuk klinik dan rumah bersalin yang menampilkan informasi layanan kesehatan keluarga, jadwal operasional, fasilitas, artikel edukasi, kontak, lokasi, serta formulir janji temu. Dibangun dengan pendekatan modern, responsif, dan mudah dinavigasi.",
     stack: ["Next.js", "TypeScript 5", "React 19", "Vanilla CSS"],
     image: "/images/klinik.png",
     imageAlt: "Klinik dan Rumah Bersalin Nur Fajar website preview",
     delay: "2",
     href: "https://klinik-nurfajar.vercel.app/",
+    filterTags: ["Web App"],
   },
   {
     num: "04",
@@ -60,8 +66,9 @@ const projects = [
     stack: ["PHP", "MySQL", "Javascript"],
     image: "/images/elogsuite.png",
     imageAlt: "eLogsuite logistics application dashboard preview",
-    delay: "2",
+    delay: "3",
     href: "https://server7.elog.id/elogsuite",
+    filterTags: ["Internal System"],
   },
 ];
 ---
@@ -72,10 +79,364 @@ const projects = [
       <span class="eyebrow">Selected Work</span>
       <h2 class="section-title" style="margin-top:18px">Things I've built</h2>
     </div>
-    <span class="section-index" aria-hidden="true">/ 03 — 06</span>
+    <span class="section-index" aria-hidden="true">/ 03 — 07</span>
   </div>
 
-  <div class="work-grid">
-    {projects.map((project) => <WorkCard {...project} />)}
+  <!-- Filter Buttons -->
+  <div class="work-filters reveal" data-d="2">
+    <button class="work-filter-btn active" data-filter="all" id="wf-all">All</button>
+    <button class="work-filter-btn" data-filter="Internal System" id="wf-internal">Internal System</button>
+    <button class="work-filter-btn" data-filter="Web App" id="wf-web">Web App</button>
+    <button class="work-filter-btn" data-filter="Learning Platform" id="wf-learning">Learning Platform</button>
+    <button class="work-filter-btn" data-filter="Logistics System" id="wf-logistics">Logistics</button>
+  </div>
+
+  <!-- Project Grid -->
+  <div class="work-grid" id="work-grid">
+    {projects.map((project, idx) => (
+      <div
+        class={`work-card card-tilt reveal ${project.featured ? 'card-highlighted shake-card-' + (idx + 1) : ''}`}
+        data-d={project.delay}
+        data-filter-tags={JSON.stringify(project.filterTags || [])}
+        data-href={project.href}
+      >
+        <!-- Inner glow (follows mouse) -->
+        <div class="card-inner-glow"></div>
+
+        {project.featured && (
+          <div class="star-badge-wrapper">
+            <span class="star-badge">⭐ Featured</span>
+          </div>
+        )}
+
+        <!-- Visual preview -->
+        <div class="work-card-visual">
+          <div class="work-card-img-wrap">
+            <img
+              src={project.image}
+              alt={project.imageAlt}
+              class="work-card-img"
+              loading={idx === 0 ? "eager" : "lazy"}
+              width="800"
+              height="450"
+            />
+            <div class="work-card-img-overlay">
+              <a href={project.href} target="_blank" rel="noopener noreferrer" class="work-card-visit">
+                View Project ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card body -->
+        <div class="work-card-body">
+          <div class="work-card-meta">
+            <span class="work-card-num">{ project.num }</span>
+            <span class="work-card-year">{ project.year }</span>
+            <span class="work-card-tag">{ project.tag }</span>
+          </div>
+
+          <h3 class="work-card-title">{ project.title }</h3>
+          <p class="work-card-desc">{ project.desc }</p>
+
+          <div class="work-card-stack">
+            {project.stack.map(tech => (
+              <span class="work-tech-badge">{ tech }</span>
+            ))}
+          </div>
+
+          <div class="work-card-footer">
+            <a href={project.href} target="_blank" rel="noopener noreferrer" class="work-card-link">
+              Open Project
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
   </div>
 </section>
+
+<script>
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.work-filter-btn');
+  const cards = document.querySelectorAll('#work-grid .work-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = (btn as HTMLElement).dataset.filter || 'all';
+
+      cards.forEach(card => {
+        const el = card as HTMLElement;
+        const tags: string[] = JSON.parse(el.dataset.filterTags || '[]');
+        if (filter === 'all' || tags.includes(filter)) {
+          el.style.display = '';
+          el.style.opacity = '1';
+          el.style.transform = '';
+        } else {
+          el.style.opacity = '0';
+          el.style.transform = 'scale(0.96)';
+          setTimeout(() => { el.style.display = 'none'; }, 250);
+        }
+      });
+    });
+  });
+
+  // 3D tilt effect
+  const tiltCards = document.querySelectorAll('.card-tilt');
+  tiltCards.forEach(card => {
+    const el = card as HTMLElement;
+    const glow = el.querySelector('.card-inner-glow') as HTMLElement;
+
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = (e as MouseEvent).clientX - rect.left;
+      const y = (e as MouseEvent).clientY - rect.top;
+      const cx = rect.width / 2, cy = rect.height / 2;
+      const dx = (x - cx) / cx, dy = (y - cy) / cy;
+      el.style.transform = `perspective(600px) rotateY(${dx * 4}deg) rotateX(${-dy * 4}deg) scale(1.01)`;
+      if (glow) {
+        glow.style.opacity = '1';
+        glow.style.background = `radial-gradient(200px circle at ${x}px ${y}px, color-mix(in srgb, var(--color-brand-accent) 12%, transparent), transparent 100%)`;
+      }
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+      if (glow) glow.style.opacity = '0';
+    });
+  });
+</script>
+
+<style>
+  /* Filter buttons */
+  .work-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 24px 0 40px;
+  }
+  .work-filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-brand-text-secondary);
+    background: var(--color-brand-surface);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+  .work-filter-btn:hover {
+    color: var(--color-brand-accent);
+    border-color: color-mix(in srgb, var(--color-brand-accent) 40%, transparent);
+    background: color-mix(in srgb, var(--color-brand-accent) 6%, transparent);
+  }
+  .work-filter-btn.active {
+    color: var(--color-brand-accent);
+    background: color-mix(in srgb, var(--color-brand-accent) 10%, transparent);
+    border-color: color-mix(in srgb, var(--color-brand-accent) 30%, transparent);
+    font-weight: 600;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--color-brand-accent) 10%, transparent);
+  }
+
+  /* Grid */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 860px) { .work-grid { grid-template-columns: 1fr; } }
+
+  /* Card base */
+  .work-card {
+    position: relative;
+    background: var(--color-brand-surface);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                opacity 0.25s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+    cursor: pointer;
+  }
+  .work-card:hover {
+    border-color: color-mix(in srgb, var(--color-brand-accent) 35%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-brand-accent) 15%, transparent),
+                0 8px 24px rgba(0,0,0,0.3),
+                0 0 48px color-mix(in srgb, var(--color-brand-accent) 8%, transparent);
+  }
+
+  /* Featured card */
+  .card-highlighted {
+    border-color: color-mix(in srgb, var(--color-brand-accent) 20%, transparent);
+    background: linear-gradient(135deg, var(--color-brand-surface) 60%, color-mix(in srgb, var(--color-brand-accent) 4%, transparent) 100%);
+  }
+  .card-highlighted:hover {
+    border-color: color-mix(in srgb, var(--color-brand-accent) 45%, transparent) !important;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-brand-accent) 20%, transparent),
+                0 12px 36px rgba(0,0,0,0.4),
+                0 0 48px color-mix(in srgb, var(--color-brand-accent) 10%, transparent) !important;
+  }
+  .card-highlighted .star-badge-wrapper {
+    animation: badge-pulse 2s ease-in-out infinite;
+  }
+  @keyframes badge-pulse {
+    0%, 100% { opacity: 0.95; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.03); }
+  }
+  .star-badge-wrapper { position: absolute; top: 12px; right: 12px; z-index: 10; }
+  .star-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    background: color-mix(in srgb, var(--color-brand-accent) 15%, transparent);
+    color: var(--color-brand-accent);
+    border: 1px solid color-mix(in srgb, var(--color-brand-accent) 30%, transparent);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+
+  /* Inner glow */
+  .card-inner-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    border-radius: inherit;
+  }
+  .work-card > :not(.card-inner-glow) { position: relative; z-index: 1; }
+
+  /* Visual/image */
+  .work-card-visual {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--color-brand-surface-alt);
+    border-bottom: 1px solid var(--color-brand-border);
+    position: relative;
+  }
+  .work-card-img-wrap { width: 100%; height: 100%; position: relative; }
+  .work-card-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+  .work-card:hover .work-card-img { transform: scale(1.04); }
+  .work-card-img-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+  }
+  .work-card:hover .work-card-img-overlay { opacity: 1; }
+  .work-card-visit {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-brand-accent);
+    border-radius: 999px;
+    padding: 8px 20px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .work-card-visit:hover { background: var(--color-brand-accent-hover); transform: scale(1.05); }
+
+  /* Card body */
+  .work-card-body { padding: 20px 24px 22px; }
+  .work-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .work-card-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-brand-accent);
+    font-weight: 700;
+  }
+  .work-card-year {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-brand-text-tertiary);
+  }
+  .work-card-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--color-brand-accent);
+    background: color-mix(in srgb, var(--color-brand-accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-brand-accent) 15%, transparent);
+    border-radius: 4px;
+    padding: 0.1rem 0.4rem;
+    margin-left: auto;
+  }
+  .work-card-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-brand-text-primary);
+    letter-spacing: -0.02em;
+    margin: 0 0 10px;
+  }
+  .work-card-desc {
+    font-size: 0.85rem;
+    color: var(--color-brand-text-secondary);
+    line-height: 1.6;
+    margin: 0 0 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .work-card-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .work-tech-badge {
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    font-weight: 600;
+    color: var(--color-brand-text-secondary);
+    background: var(--color-brand-surface-alt);
+    border: 1px solid var(--color-brand-border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .work-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px solid var(--color-brand-border);
+    padding-top: 14px;
+  }
+  .work-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-brand-accent);
+    text-decoration: none;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .work-card-link:hover { gap: 8px; color: var(--color-brand-accent-hover); }
+</style>
