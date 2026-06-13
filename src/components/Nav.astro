@@ -1,233 +1,679 @@
 ---
-// Nav.astro — Updated with logo glow, theme toggle, inspired by faisalaffan.com
+// Nav.astro — Faithful to faisalaffan.com reference header
 ---
 
-<nav class="nav" id="main-nav" aria-label="Main navigation">
-  <a href="#top" class="brand" aria-label="Isnaeni Hidayat — Home">
-    <span class="logo-glow-wrap">
-      <span class="mark" aria-hidden="true">IH</span>
-    </span>
-    Isnaeni Hidayat
-  </a>
+<!-- Scroll progress bar (thin accent line at very top) -->
+<div class="nav-progress" id="nav-progress" aria-hidden="true"></div>
 
-  <div class="nav-links" role="list">
-    <a href="#about"      role="listitem"><span class="n" aria-hidden="true">01</span>About</a>
-    <a href="#skills"     role="listitem"><span class="n" aria-hidden="true">02</span>Stack</a>
-    <a href="#github"     role="listitem"><span class="n" aria-hidden="true">03</span>GitHub</a>
-    <a href="#work"       role="listitem"><span class="n" aria-hidden="true">04</span>Work</a>
-    <a href="#ai"         role="listitem"><span class="n" aria-hidden="true">05</span>AI</a>
-    <a href="#experience" role="listitem"><span class="n" aria-hidden="true">06</span>Journey</a>
-    <a href="#writing"    role="listitem"><span class="n" aria-hidden="true">07</span>Writing</a>
-  </div>
+<header class="site-header" id="site-header" role="banner">
+  <div class="site-header__inner">
 
-  <div class="nav-right">
-    <!-- Theme Toggle -->
-    <button
-      class="theme-toggle"
-      id="theme-toggle"
-      aria-label="Toggle dark/light mode"
-      title="Toggle theme"
-    >
-      <span class="theme-icon theme-icon-dark">🌙</span>
-      <span class="theme-icon theme-icon-light" style="display:none">☀️</span>
-    </button>
+    <!-- ── Mobile: Hamburger (left) ── -->
+    <div class="hdr-mobile-left">
+      <button
+        class="hdr-hamburger"
+        id="nav-hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/>
+        </svg>
+      </button>
+    </div>
 
-    <a href="#contact" class="nav-cta" data-magnetic="0.4">Let's talk →</a>
-  </div>
+    <!-- ── Logo (centered mobile / left desktop) ── -->
+    <a href="#top" class="hdr-brand" aria-label="Isnaeni Hidayat — Home">
+      <span class="logo-glow-wrap" aria-hidden="true">
+        <span class="hdr-mark">IH</span>
+      </span>
+      <span class="hdr-brand__name">Isnaeni Hidayat</span>
+    </a>
 
-  <!-- Mobile hamburger -->
-  <button
-    class="nav-hamburger"
-    id="nav-hamburger"
-    aria-label="Open navigation menu"
-    aria-expanded="false"
-    aria-controls="mobile-menu"
-  >
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
-</nav>
+    <!-- ── Desktop nav (hidden on mobile) ── -->
+    <nav class="hdr-nav" aria-label="Main navigation">
+      <!-- Pill: secondary nav links -->
+      <div class="hdr-nav__pill" role="list">
+        <a href="#about"      class="hdr-nav__link" role="listitem"><span class="hdr-nav__num" aria-hidden="true">01</span>About</a>
+        <a href="#skills"     class="hdr-nav__link" role="listitem"><span class="hdr-nav__num" aria-hidden="true">02</span>Stack</a>
+        <a href="#github"     class="hdr-nav__link" role="listitem"><span class="hdr-nav__num" aria-hidden="true">03</span>GitHub</a>
+        <a href="#work"       class="hdr-nav__link" role="listitem"><span class="hdr-nav__num" aria-hidden="true">04</span>Work</a>
+        <a href="#ai"         class="hdr-nav__link" role="listitem"><span class="hdr-nav__num" aria-hidden="true">05</span>AI</a>
+        <a href="#experience" class="hdr-nav__link" role="listitem"><span class="hdr-nav__num" aria-hidden="true">06</span>Journey</a>
+        <a href="#writing"    class="hdr-nav__link" role="listitem"><span class="hdr-nav__num" aria-hidden="true">07</span>Writing</a>
+      </div>
+
+      <!-- Resume button -->
+      <button class="hdr-btn hdr-btn--resume" id="hdr-resume-btn" aria-label="Open resume" aria-haspopup="true" aria-expanded="false">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/>
+          <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
+          <path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>
+        </svg>
+        Resume
+        <svg class="hdr-resume-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="hdr-resume-dd" id="hdr-resume-dd" hidden>
+        <a href="/resume" class="hdr-resume-dd__item">📄 Resume (PDF)</a>
+        <a href="/cv" class="hdr-resume-dd__item">📋 Full CV</a>
+      </div>
+
+      <!-- Contact CTA -->
+      <a href="#contact" class="hdr-btn hdr-btn--cta" id="hdr-contact-btn">Let's talk →</a>
+
+      <!-- Theme toggle -->
+      <button
+        class="hdr-theme-toggle"
+        id="theme-toggle"
+        aria-label="Toggle dark/light mode"
+        title="Toggle theme"
+      >
+        <span class="hdr-theme-icon hdr-theme-icon--dark" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+        </span>
+        <span class="hdr-theme-icon hdr-theme-icon--light" aria-hidden="true" style="display:none">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </span>
+      </button>
+    </nav>
+
+    <!-- ── Mobile: theme toggle (right) ── -->
+    <div class="hdr-mobile-right">
+      <button
+        class="hdr-theme-toggle"
+        id="theme-toggle-mobile"
+        aria-label="Toggle dark/light mode"
+      >
+        <span class="hdr-theme-icon hdr-theme-icon--dark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+        </span>
+        <span class="hdr-theme-icon hdr-theme-icon--light" aria-hidden="true" style="display:none">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </span>
+      </button>
+    </div>
+
+  </div><!-- /.site-header__inner -->
+</header>
 
 <!-- Mobile menu drawer -->
-<div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
-  <div class="mobile-menu-inner">
-    <nav class="mobile-links" role="list">
-      <a href="#about"      role="listitem"><span class="n" aria-hidden="true">01</span>About</a>
-      <a href="#skills"     role="listitem"><span class="n" aria-hidden="true">02</span>Stack</a>
-      <a href="#github"     role="listitem"><span class="n" aria-hidden="true">03</span>GitHub</a>
-      <a href="#work"       role="listitem"><span class="n" aria-hidden="true">04</span>Work</a>
-      <a href="#ai"         role="listitem"><span class="n" aria-hidden="true">05</span>AI</a>
-      <a href="#experience" role="listitem"><span class="n" aria-hidden="true">06</span>Journey</a>
-      <a href="#writing"    role="listitem"><span class="n" aria-hidden="true">07</span>Writing</a>
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+  <div class="mobile-menu__inner">
+    <button class="mobile-menu__close" id="mobile-menu-close" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <nav class="mobile-menu__links" role="list" aria-label="Mobile navigation">
+      <a href="#about"      class="mobile-menu__link" role="listitem"><span class="mobile-menu__num">01</span>About</a>
+      <a href="#skills"     class="mobile-menu__link" role="listitem"><span class="mobile-menu__num">02</span>Stack</a>
+      <a href="#github"     class="mobile-menu__link" role="listitem"><span class="mobile-menu__num">03</span>GitHub</a>
+      <a href="#work"       class="mobile-menu__link" role="listitem"><span class="mobile-menu__num">04</span>Work</a>
+      <a href="#ai"         class="mobile-menu__link" role="listitem"><span class="mobile-menu__num">05</span>AI</a>
+      <a href="#experience" class="mobile-menu__link" role="listitem"><span class="mobile-menu__num">06</span>Journey</a>
+      <a href="#writing"    class="mobile-menu__link" role="listitem"><span class="mobile-menu__num">07</span>Writing</a>
     </nav>
-    <a href="#contact" class="mobile-cta">Let's talk →</a>
+    <div class="mobile-menu__footer">
+      <a href="#contact" class="mobile-menu__cta">Let's talk →</a>
+    </div>
   </div>
 </div>
+<div class="mobile-menu__backdrop" id="mobile-backdrop" aria-hidden="true"></div>
 
 <script>
-  /* ── Theme Toggle ── */
-  const themeToggle = document.getElementById('theme-toggle');
-  const iconDark = themeToggle?.querySelector('.theme-icon-dark') as HTMLElement | null;
-  const iconLight = themeToggle?.querySelector('.theme-icon-light') as HTMLElement | null;
-
+  // ── Theme toggle (sync both desktop + mobile buttons) ──────
   function getStoredTheme(): string {
     return localStorage.getItem('portfolio-theme') || 'dark';
   }
 
   function applyTheme(theme: string) {
     document.documentElement.setAttribute('data-theme', theme);
-    if (iconDark && iconLight) {
-      if (theme === 'dark') {
-        iconDark.style.display = '';
-        iconLight.style.display = 'none';
-      } else {
-        iconDark.style.display = 'none';
-        iconLight.style.display = '';
-      }
-    }
+    document.querySelectorAll('.hdr-theme-icon--dark').forEach(el => {
+      (el as HTMLElement).style.display = theme === 'dark' ? '' : 'none';
+    });
+    document.querySelectorAll('.hdr-theme-icon--light').forEach(el => {
+      (el as HTMLElement).style.display = theme === 'light' ? '' : 'none';
+    });
   }
 
-  // Apply on load
   applyTheme(getStoredTheme());
 
-  themeToggle?.addEventListener('click', () => {
+  function toggleTheme() {
     const current = document.documentElement.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     localStorage.setItem('portfolio-theme', next);
     applyTheme(next);
-  });
+  }
 
-  /* ── Mobile Menu ── */
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+
+  // ── Scroll: header frosted glass + progress bar ────────────
+  const header = document.getElementById('site-header');
+  const progress = document.getElementById('nav-progress');
+
+  function onScroll() {
+    const scrolled = window.scrollY > 20;
+    header?.classList.toggle('scrolled', scrolled);
+
+    // Scroll progress
+    if (progress) {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+      progress.style.transform = `scaleX(${pct / 100})`;
+    }
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id], header[id]');
+    let current = '';
+    sections.forEach(sec => {
+      const top = (sec as HTMLElement).offsetTop - 100;
+      if (window.scrollY >= top) current = sec.id;
+    });
+    document.querySelectorAll('.hdr-nav__link').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      link.classList.toggle('active', href === `#${current}`);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Mobile menu ────────────────────────────────────────────
   const hamburger = document.getElementById('nav-hamburger');
-  const menu = document.getElementById('mobile-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-backdrop');
+  const closeBtn = document.getElementById('mobile-menu-close');
 
   function openMenu() {
-    menu?.classList.add('open');
-    hamburger?.classList.add('active');
+    mobileMenu?.classList.add('open');
+    backdrop?.classList.add('open');
     hamburger?.setAttribute('aria-expanded', 'true');
-    menu?.setAttribute('aria-hidden', 'false');
+    mobileMenu?.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
-    menu?.classList.remove('open');
-    hamburger?.classList.remove('active');
+    mobileMenu?.classList.remove('open');
+    backdrop?.classList.remove('open');
     hamburger?.setAttribute('aria-expanded', 'false');
-    menu?.setAttribute('aria-hidden', 'true');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
-  hamburger?.addEventListener('click', () => {
-    menu?.classList.contains('open') ? closeMenu() : openMenu();
+  hamburger?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  backdrop?.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  mobileMenu?.querySelectorAll('.mobile-menu__link, .mobile-menu__cta').forEach(a => {
+    a.addEventListener('click', closeMenu);
   });
 
-  menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-  menu?.addEventListener('click', (e) => { if (e.target === menu) closeMenu(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  // ── Resume dropdown ────────────────────────────────────────
+  const resumeBtn = document.getElementById('hdr-resume-btn');
+  const resumeDd = document.getElementById('hdr-resume-dd');
+  const resumeChevron = resumeBtn?.querySelector('.hdr-resume-chevron') as HTMLElement | null;
+
+  resumeBtn?.addEventListener('click', () => {
+    const open = resumeDd?.hidden;
+    if (resumeDd) resumeDd.hidden = !open;
+    resumeBtn.setAttribute('aria-expanded', String(open));
+    if (resumeChevron) resumeChevron.style.transform = open ? 'rotate(180deg)' : '';
+  });
+
+  document.addEventListener('click', e => {
+    if (resumeDd && resumeBtn && !resumeBtn.contains(e.target as Node) && !resumeDd.contains(e.target as Node)) {
+      resumeDd.hidden = true;
+      resumeBtn.setAttribute('aria-expanded', 'false');
+      if (resumeChevron) resumeChevron.style.transform = '';
+    }
+  });
 </script>
 
 <style>
-  /* ── Nav right group ── */
-  .nav-right {
-    display: flex; align-items: center; gap: 10px;
-  }
-  @media (max-width: 860px) {
-    .nav-right { display: none; }
-  }
+/* ============================================================
+   SITE HEADER — faithful to faisalaffan.com
+   ============================================================ */
 
-  /* ── Hamburger button ── */
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    z-index: 200;
-  }
-  .nav-hamburger .bar {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--fg);
-    border-radius: 2px;
-    transition: transform 0.3s var(--ease), opacity 0.3s;
-  }
-  .nav-hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-hamburger.active .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .nav-hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* Scroll progress bar */
+.nav-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 1001;
+  pointer-events: none;
+  transition: transform 0.05s linear;
+}
 
-  @media (max-width: 860px) { .nav-hamburger { display: flex; } }
+/* Header wrapper */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s, height 0.3s, box-shadow 0.3s;
+}
 
-  /* ── Mobile menu drawer ── */
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 150;
-    background: color-mix(in srgb, var(--color-brand-bg) 60%, transparent);
-    backdrop-filter: blur(8px);
-    opacity: 0;
-    transition: opacity 0.35s var(--ease);
-    pointer-events: none;
-  }
-  .mobile-menu.open { opacity: 1; pointer-events: all; }
+.site-header.scrolled {
+  background: color-mix(in srgb, var(--color-brand-bg) 82%, transparent);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom-color: var(--color-brand-border);
+  box-shadow: 0 1px 0 var(--color-brand-border), 0 4px 24px rgba(0,0,0,0.15);
+}
 
-  .mobile-menu-inner {
-    position: absolute;
-    top: 0; right: 0;
-    width: min(320px, 85vw);
-    height: 100%;
-    background: var(--color-brand-surface);
-    border-left: 1px solid var(--color-brand-border);
-    display: flex;
-    flex-direction: column;
-    padding: 100px 36px 60px;
-    transform: translateX(100%);
-    transition: transform 0.4s var(--ease);
-  }
-  .mobile-menu.open .mobile-menu-inner { transform: translateX(0); }
+[data-theme="light"] .site-header.scrolled {
+  background: color-mix(in srgb, var(--color-brand-bg) 92%, transparent);
+}
 
-  .mobile-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .mobile-links a {
-    font-family: var(--display);
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--fg-mid);
-    padding: 14px 0;
-    letter-spacing: -0.02em;
-    border-bottom: 1px solid var(--color-brand-border);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: color 0.2s, padding-left 0.3s var(--ease);
-  }
-  .mobile-links a .n {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    opacity: 0.8;
-  }
-  .mobile-links a:hover { color: var(--fg); padding-left: 6px; }
+/* Inner container */
+.site-header__inner {
+  max-width: var(--maxw);
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+}
 
-  .mobile-cta {
-    margin-top: 36px;
-    font-family: var(--mono);
-    font-size: 0.88rem;
-    padding: 13px 24px;
-    border-radius: 999px;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    text-align: center;
-    transition: background 0.25s, color 0.25s;
-  }
-  .mobile-cta:hover { background: var(--accent); color: #fff; }
+/* ── Logo / Brand ── */
+.hdr-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
 
-  @media (max-width: 860px) { .mobile-menu { display: block; } }
+  /* Mobile: centered absolute */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hdr-brand:hover { opacity: 0.8; }
+
+.hdr-mark {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--grad);
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.logo-glow-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.logo-glow-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent) 0, transparent 70%);
+  z-index: 0;
+  animation: logoBlink 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes logoBlink {
+  0%, 100% { opacity: 0.12; transform: scale(0.9); }
+  50%       { opacity: 0.35; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-glow-wrap::after { animation: none; opacity: 0; }
+}
+
+/* ── Desktop nav ── */
+.hdr-nav {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+/* Pill container for nav links */
+.hdr-nav__pill {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: color-mix(in srgb, var(--color-brand-surface) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-brand-border) 40%, transparent);
+  padding: 4px 6px;
+  border-radius: 999px;
+  margin-right: 4px;
+}
+
+.hdr-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--fg-mid);
+  padding: 5px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+.hdr-nav__link:hover {
+  color: var(--fg);
+  background: color-mix(in srgb, var(--color-brand-surface) 80%, transparent);
+}
+
+.hdr-nav__link.active {
+  color: var(--fg);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.hdr-nav__num {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  opacity: 0.75;
+  font-weight: 700;
+}
+
+/* ── Buttons (Resume + Contact) ── */
+.hdr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--mono);
+  padding: 7px 14px;
+  border-radius: 999px;
+  transition: transform 0.2s var(--ease), background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.hdr-btn--resume {
+  background: color-mix(in srgb, var(--color-brand-surface) 60%, transparent);
+  border: 1px solid var(--color-brand-border);
+  color: var(--fg-mid);
+  position: relative;
+}
+
+.hdr-btn--resume:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--fg);
+  background: color-mix(in srgb, var(--color-brand-surface) 90%, transparent);
+}
+
+.hdr-resume-chevron {
+  transition: transform 0.2s;
+  opacity: 0.6;
+}
+
+/* Resume dropdown */
+.hdr-resume-dd {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: var(--color-brand-surface);
+  border: 1px solid var(--color-brand-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+  min-width: 160px;
+  z-index: 100;
+}
+
+.hdr-resume-dd__item {
+  display: block;
+  padding: 10px 16px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--fg-mid);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.hdr-resume-dd__item:hover {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  color: var(--accent);
+}
+
+/* Resume btn container needs relative position */
+.hdr-nav {
+  position: relative;
+}
+
+.hdr-btn--cta {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 12px var(--accent-glow);
+}
+
+.hdr-btn--cta:hover {
+  background: var(--color-brand-accent-hover);
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* ── Theme toggle ── */
+.hdr-theme-toggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--color-brand-border) 80%, transparent);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--fg-mid);
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.3s var(--ease);
+}
+
+.hdr-theme-toggle:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  color: var(--accent);
+  transform: rotate(18deg);
+}
+
+/* ── Mobile left/right sides ── */
+.hdr-mobile-left,
+.hdr-mobile-right {
+  display: flex;
+  align-items: center;
+}
+
+.hdr-hamburger {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.hdr-hamburger:hover {
+  background: color-mix(in srgb, var(--color-brand-surface) 80%, transparent);
+}
+
+/* ── Desktop: show nav, hide mobile controls ── */
+@media (min-width: 860px) {
+  .hdr-brand {
+    position: static;
+    transform: none;
+  }
+  .hdr-nav { display: flex; }
+  .hdr-mobile-left,
+  .hdr-mobile-right { display: none; }
+}
+
+/* ── Mobile menu drawer ── */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.mobile-menu.open {
+  pointer-events: all;
+  visibility: visible;
+}
+
+.mobile-menu__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 997;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.mobile-menu__backdrop.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-menu__inner {
+  position: absolute;
+  top: 0; right: 0;
+  width: min(320px, 88vw);
+  height: 100%;
+  background: var(--color-brand-surface);
+  border-left: 1px solid var(--color-brand-border);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: -20px 0 60px rgba(0,0,0,0.3);
+  overflow-y: auto;
+}
+
+.mobile-menu.open .mobile-menu__inner {
+  transform: translateX(0);
+}
+
+.mobile-menu__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-brand-border);
+  background: transparent;
+  color: var(--fg-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.mobile-menu__close:hover {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  color: var(--accent);
+}
+
+.mobile-menu__links {
+  display: flex;
+  flex-direction: column;
+  padding: 80px 28px 28px;
+  flex: 1;
+}
+
+.mobile-menu__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--fg-mid);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-brand-border);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  transition: color 0.2s, padding-left 0.25s var(--ease);
+}
+
+.mobile-menu__link:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu__link:hover {
+  color: var(--fg);
+  padding-left: 8px;
+}
+
+.mobile-menu__num {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.mobile-menu__footer {
+  padding: 20px 28px 36px;
+  border-top: 1px solid var(--color-brand-border);
+}
+
+.mobile-menu__cta {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.mobile-menu__cta:hover {
+  background: var(--color-brand-accent-hover);
+  transform: translateY(-1px);
+}
 </style>

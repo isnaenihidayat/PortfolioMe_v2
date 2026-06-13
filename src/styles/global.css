@@ -406,196 +406,48 @@ section {
 }
 
 /* ============================================================
-   NAVBAR
+   NAVBAR — styles moved to Nav.astro <style> scoped block
+   Global overrides for scroll-active state kept here
    ============================================================ */
-.nav {
+
+/* Scroll progress bar (global, used by Nav.astro) */
+#nav-progress {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px var(--gutter);
-  transition: background .4s, backdrop-filter .4s, border-color .4s, padding .4s;
-  border-bottom: 1px solid transparent;
-}
-
-.nav.scrolled {
-  background: color-mix(in srgb, var(--color-brand-bg) 75%, transparent);
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  border-bottom-color: var(--color-brand-border);
-  padding-block: 12px;
-}
-
-[data-theme="light"] .nav.scrolled {
-  background: color-mix(in srgb, var(--color-brand-bg) 85%, transparent);
-}
-
-/* Logo glow — inspired by faisalaffan.com logoBlink */
-.brand {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 1.05rem;
-  letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  gap: 0.55em;
-}
-
-.logo-glow-wrap {
-  position: relative;
-  display: inline-flex;
-}
-
-.logo-glow-wrap::after {
-  content: '';
-  position: absolute;
-  inset: -14px;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--color-brand-accent) 25%, transparent) 0, transparent 70%);
-  z-index: 0;
-  animation: logoBlink 4s ease-in-out infinite;
-}
-
-@keyframes logoBlink {
-
-  0%,
-  100% {
-    opacity: 0.15;
-    transform: scale(0.95);
-  }
-
-  40% {
-    opacity: 0.35;
-    transform: scale(1.02);
-  }
-
-  70% {
-    opacity: 0.20;
-    transform: scale(0.97);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logo-glow-wrap::after {
-    animation: none;
-    display: none;
-  }
-}
-
-.brand .mark {
-  position: relative;
-  z-index: 1;
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: var(--grad);
-  display: grid;
-  place-items: center;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2px;
-  align-items: center;
-}
-
-.nav-links a {
-  font-size: 0.86rem;
-  color: var(--fg-mid);
-  padding: 8px 14px;
-  border-radius: 8px;
-  position: relative;
-  transition: color .25s;
-  font-weight: 500;
-}
-
-.nav-links a .n {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--accent);
-  margin-right: 6px;
-  opacity: 0.7;
-}
-
-.nav-links a:hover {
-  color: var(--fg);
-}
-
-.nav-links a.active {
-  color: var(--fg);
-}
-
-.nav-links a.active::after {
-  content: '';
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 2px;
-  height: 1px;
+  top: 0; left: 0; right: 0;
+  height: 2px;
   background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 1001;
+  pointer-events: none;
 }
 
-.nav-cta {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  padding: 9px 18px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--fg);
-  transition: border-color .25s, background .25s, color .25s;
-  font-weight: 500;
-}
-
-.nav-cta:hover {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-/* Theme Toggle */
+/* Theme toggle global — keep for compatibility */
 .theme-toggle {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: 1px solid var(--color-brand-border);
-  background: var(--color-brand-surface);
+  background: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
   color: var(--fg-mid);
-  transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.3s var(--ease);
+  transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.3s var(--ease);
 }
 
 .theme-toggle:hover {
   border-color: var(--accent);
-  background: var(--accent-soft);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
   color: var(--accent);
-  transform: rotate(20deg);
-}
-
-.nav-toggle {
-  display: none;
+  transform: rotate(18deg);
 }
 
 @media (max-width: 860px) {
-  .nav-links {
-    display: none;
-  }
-
-  .nav-cta {
-    display: none;
-  }
+  .theme-toggle { display: none; }
 }
+
 
 /* ============================================================
    HERO SECTION — Faithful to faisalaffan.com reference
